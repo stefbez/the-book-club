@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Book Club</title>
+</head>
+<body>
+    {% for book in books %}
+        {{ book.book_title }}<br>
+        {{ book.book_author }}<br>
+        {{ book.book_cover }}<br>
+         <img src="{{ book.book_cover }}" alt="image alt text" />
+        {{ book.book_review }}
+    {% endfor %}
+</body>
+</html>
