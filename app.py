@@ -51,6 +51,23 @@ def sign_up():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
+    if request.method == "POST":
+        existing_user = mongo.db.users.find_one(
+            {"email": request.form.get("email").lower()})
+
+        if existing_user:
+            if check_password_hash(
+                    existing_user["password"], request.form.get("password")):
+                        session["user"] = request.form.get("email").lower()
+                        flash("Welcome, {}".format(
+                            request.form.get("email")))
+            else:
+                flash("We don't recognise your email and/or password")
+                return redirect(url_for("login"))
+
+        else:
+            flash("We don't recognise your email and/or password")
+            return redirect(url_for("login"))
     return render_template("login.html")
 
 
