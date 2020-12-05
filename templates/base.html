@@ -16,7 +16,7 @@
     <header>
       <nav>
     <div class="nav-wrapper">
-      <a href="{{ url_for('library') }}" class="brand-logo center">Logo</a>
+      <a href="{{ url_for('library') }}" class="brand-logo center">The Book Club</a>
       <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="far fa-book"></i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="{{ url_for('library') }}">Library</a></li>
@@ -25,20 +25,27 @@
         <li><a href="#">Admin</a></li>
         <li><a href="#">Log Out</a></li>
         <li><a href="#">Log In</a></li>
-        <li><a href="#">Sign Up</a></li>
+        <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav text-right" id="mobile-demo">
-    <li><a href="sass.html">Sass</a></li>
-    <li><a href="badges.html">Components</a></li>
-    <li><a href="collapsible.html">Javascript</a></li>
-    <li><a href="mobile.html">Mobile</a></li>
+<!-- Copy links from above -->
   </ul>
     </header>
-
-    <h1>The Book Club</h1>
+    <!-- flash message -->
+    <section>
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="row flash-msg">
+                        <h3 class="center-align">{{ message }}</h3>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
     {% block content %}
     {% endblock %}
 
