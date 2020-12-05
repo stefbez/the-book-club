@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2 class="center-align">Log In</h2>
+    <div class="row">
+        <form class="col s12 m8 offset-m4" method="POST" action="{{ url_for('login') }}">
+            <!-- Email -->
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="prefix far fa-at"></i>
+                    <input id="email" name="email" type="email" class="validate" required>
+                    <label for="email">Email</label>
+                </div>
+            </div>
+            <!-- Password -->
+            <div class="row">
+                <div class="input-field col s6">
+                    <i class="prefix far fa-asterisk"></i>
+                    <input id="password" name="password" type="password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^...]).{8,}$" class="validate" required>
+                    <label for="password">Password</label>
+                </div>
+            </div>
+            <!-- Sign Up Button -->
+            <div class="row">
+                <button type="submit" class="col s6 waves-effect waves-light btn-large">
+                    <i class="far fa-sign-in-alt"></i> Log In
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <p class="center-align">
+            Not registered? <a href="{{ url_for('sign_up') }}" class="btn">Sign Up Here</a>
+            </p>
+        </div>
+    </div>
+{% endblock %}

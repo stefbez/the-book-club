@@ -44,8 +44,14 @@ def sign_up():
         mongo.db.users.insert_one(sign_up)
 
         session["user"] = request.form.get("email").lower()
-        flash("Welcome to The Book Club, {}!".format(request.form.get("first_name")))
+        flash("Welcome to The Book Club, {}!".format(
+            request.form.get("first_name")))
     return render_template("sign_up.html")
+
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    return render_template("login.html")
 
 
 if __name__ == "__main__":
