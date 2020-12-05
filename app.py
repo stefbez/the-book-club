@@ -29,7 +29,7 @@ def library():
 def sign_up():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
-            {"email": request.form.get("email").lower()})
+            {"username": request.form.get("username").lower()})
 
         if existing_user:
             flash("Looks like you've already signed up!")
@@ -38,14 +38,15 @@ def sign_up():
         sign_up = {
             "first_name": request.form.get("first_name").lower(),
             "last_name": request.form.get("last_name").lower(),
-            "email": request.form.get("email").lower(),
+            "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
         mongo.db.users.insert_one(sign_up)
 
-        session["user"] = request.form.get("email").lower()
+        session["user"] = request.form.get("username").lower()
         flash("Welcome to The Book Club, {}!".format(
             request.form.get("first_name")))
+        return redirect(url_for("profile", username=session["user"]))
     return render_template("sign_up.html")
 
 
@@ -53,22 +54,32 @@ def sign_up():
 def login():
     if request.method == "POST":
         existing_user = mongo.db.users.find_one(
-            {"email": request.form.get("email").lower()})
+            {"username": request.form.get("username").lower()})
 
         if existing_user:
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("email").lower()
-                        flash("Welcome, {}".format(
-                            request.form.get("email")))
+                        return redirect(url_for(
+                            "profile", username=session["user"]))
             else:
-                flash("We don't recognise your email and/or password")
+                flash("We don't recognise your username and/or password")
                 return redirect(url_for("login"))
 
         else:
-            flash("We don't recognise your email and/or password")
+            flash("We don't recognise your username and/or password")
             return redirect(url_for("login"))
     return render_template("login.html")
+
+
+@app.route("/profile/<username>", methods=["GET", "POST"])
+def profile(username):
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["first_name"]
+
+    if session["user"]:
+        return render_template("profile.html", first_name=username)
+
+    return redirect(url_for("login"))
 
 
 if __name__ == "__main__":

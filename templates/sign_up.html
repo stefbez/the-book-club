@@ -9,7 +9,7 @@
                     <i class="prefix far fa-book-user"></i>
                     <input id="first_name" name="first_name" type="text" minlength="2" maxlength="25" pattern="^[A-Za-z -]+$" class="validate" required>
                     <label for="first_name">First Name</label>
-                    <span class="helper-text" data-error="Please enter a valid first name" data-success="right"></span>
+                    <span class="helper-text" data-error="Please enter a valid first name"></span>
                 </div>
             </div>
             <!-- Last Name -->
@@ -18,16 +18,16 @@
                     <i class="prefix far fa-book-user"></i>
                     <input id="last_name" name="last_name" type="text" minlength="2" maxlength="25" pattern="^[A-Za-z -]+$" class="validate" required>
                     <label for="last_name">Last Name</label>
-                    <span class="helper-text" data-error="Please enter a valid last name" data-success="right"></span>
+                    <span class="helper-text" data-error="Please enter a valid last name"></span>
                 </div>
             </div>
-            <!-- Email -->
+            <!-- Username -->
             <div class="row">
                 <div class="input-field col s6">
-                    <i class="prefix far fa-at"></i>
-                    <input id="email" name="email" type="email" class="validate" required>
-                    <label for="email">Email</label>
-                    <span class="helper-text" data-error="Please enter a valid email address" data-success="right"></span>
+                    <i class="prefix fad fa-user-tie"></i>
+                    <input id="username" name="username" type="text" minlength="5" maxlength="20" pattern="^[A-Za-z0-9]+$" class="validate" required>
+                    <label for="username">Username</label>
+                    <span class="helper-text" data-error="Please enter a valid username"></span>
                 </div>
             </div>
             <!-- Password -->
@@ -36,7 +36,7 @@
                     <i class="prefix far fa-asterisk"></i>
                     <input id="password" name="password" type="password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^...]).{8,}$" class="validate" required>
                     <label for="password">Password</label>
-                    <span class="helper-text" data-error="Password must contain at least one capital letter, number and special character" data-success="right">Password must contain at least one capital letter, number and special character</span>
+                    <span class="helper-text" data-error="Password must contain at least one capital letter, number and special character">Password must contain at least one capital letter, number and special character</span>
                 </div>
             </div>
             <!-- Sign Up Button -->
