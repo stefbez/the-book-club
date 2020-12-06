@@ -20,12 +20,19 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="far fa-book"></i></a>
       <ul class="right hide-on-med-and-down">
         <li><a href="{{ url_for('library') }}">Library</a></li>
-        <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
-        <li><a href="#">Add Book</a></li>
-        <li><a href="#">Admin</a></li>
-        <li><a href="#">Log Out</a></li>
-        <li><a href="{{ url_for('login') }}">Log In</a></li>
-        <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+        {% if session.user %}
+            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li><a href="#">Add Book</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            <!-- UPDATE THIS IF STATEMENT -->
+            <!-- {% if is_admin == on %} -->
+            <li><a href="#">Admin</a></li>
+            <!-- {% endif %} -->
+            <!-- UPDATE THIS IF STATEMENT -->
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
+            <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+        {% endif %}
       </ul>
     </div>
   </nav>

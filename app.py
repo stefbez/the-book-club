@@ -39,7 +39,8 @@ def sign_up():
             "first_name": request.form.get("first_name").lower(),
             "last_name": request.form.get("last_name").lower(),
             "username": request.form.get("username").lower(),
-            "password": generate_password_hash(request.form.get("password"))
+            "password": generate_password_hash(request.form.get("password")),
+            "is_admin": "off"
         }
         mongo.db.users.insert_one(sign_up)
 
@@ -59,6 +60,7 @@ def login():
         if existing_user:
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
+                        session["user"] = request.form.get("username").lower()
                         return redirect(url_for(
                             "profile", username=session["user"]))
             else:
@@ -79,6 +81,13 @@ def profile(username):
     if session["user"]:
         return render_template("profile.html", first_name=username)
 
+    return redirect(url_for("login"))
+
+
+@app.route("/logout")
+def logout():
+    flash("You have been logged out")
+    session.pop("user")
     return redirect(url_for("login"))
 
 
