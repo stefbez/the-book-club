@@ -97,6 +97,12 @@ def logout():
     return redirect(url_for("login"))
 
 
+@app.route("/add_book", methods=["GET", "POST"])
+def add_book():
+    genre = list(mongo.db.genre.find())
+    return render_template("add_book.html", genre=genre)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
