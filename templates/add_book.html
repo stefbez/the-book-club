@@ -24,7 +24,7 @@
         </div>
         <!-- Genre dropdown -->
         <div class="input-field col s12">
-            <select id="genre_name" name="genre_name">
+            <select id="genre_name" name="genre_name" class="validate" required>
                 <option value="" disabled selected>Choose Genre</option>
                 {% for genres in genre %}
                 <option value="{{ genres.genre_name }}">{{ genres.genre_name|title() }}</option>
