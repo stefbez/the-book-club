@@ -8,11 +8,11 @@
     
 
 {% for book in books %}
-    {% for genres in genre %}
-    {% if book.genre_name == genres.genre_name %}
+
+    {% if book.genre_name|length > 0 %}
     <h2>{{ book.genre_name }}</h2> 
             {% endif %}
-        {% endfor %}
+
        {{ book.genre_name }}<br>
         {{ book.book_title }}<br>
         {{ book.book_author }}<br>
@@ -20,6 +20,8 @@
         {{ book.book_cover }}<br>
          <img class="book-cover" src="{{ book.book_cover }}" alt="{{ book.book_title }}" /><br>
         {{ book.book_review }}
-    {% endfor %}
+
     
+    {% endfor %}
+
 {% endblock %}
