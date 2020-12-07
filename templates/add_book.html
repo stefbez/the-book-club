@@ -5,7 +5,8 @@
 
 
 <div class="row">
-    <form class="col s12">
+    <form class="col s12" method="POST" action="{{ url_for('add_book') }}">
+        <!-- Title -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="prefix"></i>
@@ -13,6 +14,7 @@
                 <label for="book_title">Title</label>
             </div>
         </div>
+        <!-- Author -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="prefix"></i>
@@ -20,14 +22,17 @@
                 <label for="book_author">Author</label>
             </div>
         </div>
+        <!-- Genre dropdown -->
         <div class="input-field col s12">
-            <select>
-                <option value="" disabled selected>Genre</option>
+            <select id="genre_name" name="genre_name">
+                <option value="" disabled selected>Choose Genre</option>
                 {% for genres in genre %}
-                <option value="1">{{ genres.genre_name|title() }}</option>
+                <option value="{{ genres.genre_name }}">{{ genres.genre_name|title() }}</option>
                 {% endfor %}
             </select>
+            <label for="genre_name">Genre</label>
         </div>
+        <!-- Cover image -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="prefix"></i>
@@ -35,11 +40,20 @@
                 <label for="book_cover">Cover Image</label>
             </div>
         </div>
+        <!-- Review text -->
         <div class="row">
             <div class="input-field col s12">
                 <i class="prefix"></i>
                 <textarea id="book_review" name="book_review" minlength="10" maxlength="500" type="text" class="materialize-textarea" required></textarea>
                 <label for="book_review">Review</label>
+            </div>
+        </div>
+        <!-- Submit button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button class="btn waves-effect waves-light" type="submit">Add Book
+                <i class="right"></i>
+                </button>
             </div>
         </div>
     </form>
