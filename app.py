@@ -21,9 +21,11 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/library")
 def library():
+    users = mongo.db.genre.find()
     books = mongo.db.books.find()
     genre = mongo.db.genre.find()
-    return render_template("library.html", books=books, genre=genre)
+    return render_template(
+        "library.html", books=books, genre=genre, users=users)
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
@@ -61,9 +63,10 @@ def login():
         if existing_user:
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
-                        return redirect(url_for(
-                            "profile", username=session["user"]))
+                session["user"] = request.form.get("username").lower()
+                return redirect(url_for(
+                    "profile", username=session["user"]))
+
             else:
                 flash("We don't recognise your username and/or password")
                 return redirect(url_for("login"))
@@ -76,11 +79,13 @@ def login():
 
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
+    users = mongo.db.genre.find()
     username = mongo.db.users.find_one(
         {"username": session["user"]})["first_name"]
 
     if session["user"]:
-        return render_template("profile.html", first_name=username)
+        return render_template(
+            "profile.html", first_name=username, users=users)
 
     return redirect(url_for("login"))
 
