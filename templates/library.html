@@ -1,12 +1,25 @@
 {% extends "base.html" %}
 {% block content %}
     <h2>The Library</h2>
-    {% for book in books %}
+
+    
+
+       
+    
+
+{% for book in books %}
+    {% for genres in genre %}
+    {% if book.genre_name == genres.genre_name %}
+    <h2>{{ book.genre_name }}</h2> 
+            {% endif %}
+        {% endfor %}
+       {{ book.genre_name }}<br>
         {{ book.book_title }}<br>
         {{ book.book_author }}<br>
         {{ book.genre_name }}<br>
         {{ book.book_cover }}<br>
-         <img src="{{ book.book_cover }}" alt="{{ book.book_title }}" /><br>
+         <img class="book-cover" src="{{ book.book_cover }}" alt="{{ book.book_title }}" /><br>
         {{ book.book_review }}
     {% endfor %}
+    
 {% endblock %}
