@@ -1,3 +1,7 @@
 .book-cover {
     max-width: 20vw;
 }
+
+div.card.card-style {
+    max-width: fit-content;
+}
