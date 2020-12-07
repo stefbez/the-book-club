@@ -2,10 +2,9 @@
 {% block content %}
     <h2>The Library</h2>
 
-    
 
-       
-    
+
+
 
 {% for book in books %}
 
@@ -20,6 +19,7 @@
         {{ book.book_cover }}<br>
          <img class="book-cover" src="{{ book.book_cover }}" alt="{{ book.book_title }}" /><br>
         {{ book.book_review }}
+       <a href="https://www.amazon.co.uk/s?k={{ book.book_title }}+{{ book.book_author }}" target="_blank">Buy Here</a>
 
     
     {% endfor %}
