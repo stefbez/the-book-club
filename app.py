@@ -22,8 +22,8 @@ mongo = PyMongo(app)
 @app.route("/library")
 def library():
     users = mongo.db.genre.find()
-    books = mongo.db.books.find()
-    genre = mongo.db.genre.find()
+    books = list(mongo.db.books.find())
+    genre = list(mongo.db.genre.find())
     return render_template(
         "library.html", books=books, genre=genre, users=users)
 
