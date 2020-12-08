@@ -21,11 +21,16 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/library")
 def library():
-    users = mongo.db.genre.find()
     books = list(mongo.db.books.find())
     genre = list(mongo.db.genre.find())
+    # if "user" in session:
+    #     print(session["user"])
+    #     user = mongo.db.users.find_one({"username": session["user"].lower()})
+    # else:
+    #     user = None
+
     return render_template(
-        "library.html", books=books, genre=genre, users=users)
+        "library.html", books=books, genre=genre)
 
 
 @app.route("/sign_up", methods=["GET", "POST"])
@@ -64,6 +69,12 @@ def login():
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
                 session["user"] = request.form.get("username").lower()
+                this_user = mongo.db.users.find_one(
+                    {"username": session["user"].lower()})
+                if this_user['is_admin'] == "on":
+                    session["is_admin"] = "on"
+                else:
+                    session["is_admin"] = "off"
                 return redirect(url_for(
                     "profile", username=session["user"]))
 
@@ -84,7 +95,7 @@ def profile(username):
 
     if session["user"]:
         users = list(mongo.db.genre.find())
-        books = list(mongo.db.genre.find())
+        books = list(mongo.db.books.find({"review_by": session["user"]}))
         return render_template(
             "profile.html", username=username, users=users, books=books)
 
@@ -95,6 +106,8 @@ def profile(username):
 def logout():
     flash("You have been logged out")
     session.pop("user")
+    if session["is_admin"] == "on":
+        session.pop("is_admin")
     return redirect(url_for("login"))
 
 

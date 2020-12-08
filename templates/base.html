@@ -25,11 +25,9 @@
             <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             <!-- UPDATE THIS IF STATEMENT -->
-            {# <!-- {% for user in users %} --> #}
-            {#<!-- {% if user.is_admin == "on" %} -->#}
+            {% if session.is_admin == "on" %}
             <li><a href="#">Admin</a></li>
-            {#<!-- {% endif %} -->#}
-            {#<!-- {% endfor %} --> #}
+            {% endif %}
             <!-- UPDATE THIS IF STATEMENT -->
         {% else %}
             <li><a href="{{ url_for('login') }}">Log In</a></li>
