@@ -64,9 +64,20 @@
                 <button class="btn waves-effect waves-light" type="submit">Edit Book
                 <i class="right"></i>
                 </button>
+                <a class="waves-effect waves-light btn modal-trigger red" href="#{{ book._id }}">Delete</a>
             </div>
         </div>
     </form>
 </div>
+
+  <div id="{{ book._id }}" class="modal delete-modal">
+    <div class="modal-content">
+      <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
+    </div>
+    <div class="modal-footer delete-btn">
+        <a class="btn waves-effect waves-light" href="{{ url_for('profile', username=session['user']) }}">Cancel</a>
+        <a class="waves-effect waves-light btn red" href="{{ url_for('delete_book', book_id=book._id) }}">Delete</a>
+    </div>
+  </div>
 
 {% endblock %}

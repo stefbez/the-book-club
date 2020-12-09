@@ -5,6 +5,8 @@
 
 <h2 class="center-align">{{ username|capitalize() }}'s Profile</h2>
 
+
+
 {% for book in books %}
 
 
@@ -18,12 +20,21 @@
         <span class="card-title">{{ book.book_title|title() }}<br>
         {{ book.book_author|title() }}</span>
         <a class="waves-effect waves-light btn modal-trigger" href="{{ url_for('edit_book', book_id=book._id) }}">Edit</a>
-        <a class="waves-effect waves-light btn modal-trigger" href="#">Delete</a>
+        <a class="waves-effect waves-light btn modal-trigger" href="#{{ book._id }}">Delete</a>
         </div>
       </div>
     </div>
   </div>
 
+  <div id="{{ book._id }}" class="modal delete-modal">
+    <div class="modal-content">
+      <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
+    </div>
+    <div class="modal-footer delete-btn">
+        <a class="btn waves-effect waves-light" href="{{ url_for('profile', username=session['user']) }}">Cancel</a>
+        <a class="waves-effect waves-light btn red" href="{{ url_for('delete_book', book_id=book._id) }}">Delete</a>
+    </div>
+  </div>
 
     
 {% endfor %}

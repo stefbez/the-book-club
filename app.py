@@ -156,6 +156,19 @@ def edit_book(book_id):
     return render_template("edit_book.html", book=book, genre=genre)
 
 
+@app.route("/delete_book/<book_id>")
+def delete_book(book_id):
+    mongo.db.books.remove({"_id": ObjectId(book_id)})
+    flash("Book Successfully Deleted")
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    if session["user"]:
+        users = list(mongo.db.genre.find())
+        books = list(mongo.db.books.find({"review_by": session["user"]}))
+        return render_template(
+            "profile.html", username=username, users=users, books=books)
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),

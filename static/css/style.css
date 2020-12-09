@@ -5,3 +5,8 @@
 div.card.card-style {
     max-width: fit-content;
 }
+
+.modal.delete-modal,
+div.modal-footer.delete-btn {
+    text-align: center;
+}
