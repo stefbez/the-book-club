@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2 class="center-align">Edit Profile {{ user }}</h2>
+    <h1>{{ this_user }}</h1>
+    <h2 class="center-align">Edit Profile</h2>
+    <p class="center-align">{{ user.first_name|title() }}, only update the information that you want to change</p>
+    <p class="center-align">If you update your username or password, please remember what you update this to in order to login next time</p>
     
     <div class="row">
         <form class="col s12 m8 offset-m4" method="POST" action="{{ url_for('edit_profile', user_id=user._id) }}">
