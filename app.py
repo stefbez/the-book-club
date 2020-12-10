@@ -94,10 +94,10 @@ def profile(username):
         {"username": session["user"]})["username"]
 
     if session["user"]:
-        users = list(mongo.db.genre.find())
+        user = mongo.db.users.find_one({"username": session["user"]})
         books = list(mongo.db.books.find({"review_by": session["user"]}))
         return render_template(
-            "profile.html", username=username, users=users, books=books)
+            "profile.html", username=username, user=user, books=books)
 
     return redirect(url_for("login"))
 
@@ -167,6 +167,39 @@ def delete_book(book_id):
         books = list(mongo.db.books.find({"review_by": session["user"]}))
         return render_template(
             "profile.html", username=username, users=users, books=books)
+
+
+@app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
+def edit_profile(user_id):
+    if request.method == "POST":
+        session.pop("user")
+        if session["is_admin"] == "on":
+            session.pop("is_admin")
+        edit_user = {
+            "first_name": request.form.get("first_name").lower(),
+            "last_name": request.form.get("last_name").lower(),
+            "username": request.form.get("username").lower(),
+            "password": generate_password_hash(request.form.get("password"))
+        }
+        mongo.db.users.update({"_id": ObjectId(user_id)}, edit_user)
+        session["user"] = request.form.get("username").lower()
+        flash("User profile successfully updated")
+    # #     username = mongo.db.users.find_one(
+    #         {"username": session["user"]})["username"]
+    #     if session["user"]:
+    #         user = list(mongo.db.users.find())
+    #         books = list(mongo.db.books.find({"review_by": session["user"]}))
+    #         return render_template(
+    #             "profile.html", username=username, user=user, books=books)
+
+    userid = mongo.db.books.find_one({"_id": ObjectId(user_id)})
+    user = mongo.db.users.find_one({"username": session["user"]})
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    # user = mongo.db.users.find_one(
+    #         {"username": session["user"].lower()})
+    return render_template(
+        "edit_profile.html", user=user, userid=userid, username=username)
 
 
 if __name__ == "__main__":
