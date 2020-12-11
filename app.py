@@ -202,15 +202,26 @@ def edit_profile(user_id):
         return render_template(
             "profile.html", username=username, user=user, books=books)
 
-    userid = mongo.db.books.find_one({"_id": ObjectId(user_id)})
+    userid = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     user = mongo.db.users.find_one({"username": session["user"]})
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
 
-
     return render_template(
         "edit_profile.html", user=user, userid=userid, username=username,
         this_user=this_user)
+
+
+@app.route("/delete_user/<user_id>")
+def delete_user(user_id):
+    mongo.db.users.remove({"_id": ObjectId(user_id)})
+    list(mongo.db.books.remove({"review_by": session["user"]}))
+    flash("User Successfully Deleted")
+    session.pop("user")
+    books = list(mongo.db.books.find())
+    genre = list(mongo.db.genre.find())
+    return render_template(
+            "library.html", books=books, genre=genre)
 
 
 if __name__ == "__main__":
