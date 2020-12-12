@@ -352,11 +352,11 @@ def delete_genre(genre_id):
     flash("Genre Successfully Deleted")
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    user = mongo.db.users.find_one({"username": session["user"]})
+    users = list(mongo.db.users.find())
     books = list(mongo.db.books.find({"review_by": session["user"]}))
     return render_template(
         "admin.html", username=username,
-        user=user, books=books, genreid=genreid)
+        users=users, books=books, genreid=genreid)
 
 
 if __name__ == "__main__":
