@@ -26,7 +26,7 @@
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
             <!-- UPDATE THIS IF STATEMENT -->
             {% if session.is_admin == "on" %}
-            <li><a href="#">Admin</a></li>
+            <li><a href="{{ url_for('admin', username=session['user']) }}">Admin</a></li>
             {% endif %}
             <!-- UPDATE THIS IF STATEMENT -->
         {% else %}

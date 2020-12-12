@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<h2 class="center-align">Admin</h2>
+<div class="row">
+<div class="col s12 m6">
+
+{% for book in books %}
+
+
+    <div class="row">
+    <div class="col s12 m7">
+      <div class="card card-style">
+        <div class="card-image">
+          <img class="book-cover" src="{{ book.book_cover }}" alt="{{ book.book_title }}" />
+        </div>
+        <div class="card-content">
+        <span class="card-title">{{ book.book_title|title() }}<br>
+        {{ book.book_author|title() }}<br>
+        {{ book.review_by|title() }}</span>
+        <a class="waves-effect waves-light btn modal-trigger" href="{{ url_for('edit_book', book_id=book._id) }}">Edit</a>
+        <a class="waves-effect waves-light btn modal-trigger" href="#{{ book._id }}">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="{{ book._id }}" class="modal delete-modal">
+    <div class="modal-content">
+      <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
+    </div>
+    <div class="modal-footer delete-btn">
+        <a class="btn waves-effect waves-light" href="{{ url_for('admin', username=session['user']) }}">Cancel</a>
+        <a class="waves-effect waves-light btn red" href="{{ url_for('delete_book', book_id=book._id) }}">Delete</a>
+    </div>
+  </div>
+</div>
+
+    
+{% endfor %}
+</div>
+<div class="col s12 m6">
+
+{% for user in users %}
+
+{{ user }}
+    
+    <div class="row">
+    <div class="col s12 m7">
+      <div class="card card-style">
+        <div class="card-content">
+        <span class="card-title">{{ user.username|title() }}<br>
+        {{ user.first_name|title() }}<br>
+        {{ user.last_name|title() }}</span>
+        <a class="waves-effect waves-light btn modal-trigger" href="{{ url_for('admin_edit_profile', user_id=user._id) }}">Edit</a>
+        <a class="waves-effect waves-light btn modal-trigger" href="#">Delete</a>
+        </div>
+      </div>
+    </div>
+
+
+{% endfor %}
+  </div>
+</div>
+{% endblock %}
