@@ -14,7 +14,7 @@
             <div class="row">
                 <div class="input-field col s6">
                     <i class="prefix far fa-book-user"></i>
-                    <input id="first_name" name="first_name" type="text" minlength="2" maxlength="25" value="{{ user.first_name|title() }}" pattern="^[A-Za-z -]+$" class="validate" required>
+                    <input id="first_name" name="first_name" type="text" minlength="2" maxlength="25" placeholder="{{ user.first_name|title() }}" pattern="^[A-Za-z -]+$" class="validate">
                     <label for="first_name">First Name</label>
                     <span class="helper-text" data-error="Please enter a valid first name"></span>
                 </div>
@@ -23,7 +23,7 @@
             <div class="row">
                 <div class="input-field col s6">
                     <i class="prefix far fa-book-user"></i>
-                    <input id="last_name" name="last_name" type="text" minlength="2" maxlength="25" value="{{ user.last_name|title() }}" pattern="^[A-Za-z -]+$" class="validate" required>
+                    <input id="last_name" name="last_name" type="text" minlength="2" maxlength="25" placeholder="{{ user.last_name|title() }}" pattern="^[A-Za-z -]+$" class="validate">
                     <label for="last_name">Last Name</label>
                     <span class="helper-text" data-error="Please enter a valid last name"></span>
                 </div>
@@ -32,7 +32,7 @@
             <div class="row">
                 <div class="input-field col s6">
                     <i class="prefix fad fa-user-tie"></i>
-                    <input id="username" name="username" type="text" minlength="5" maxlength="20" value="{{ user.username }}" pattern="^[A-Za-z0-9]+$" class="validate" required>
+                    <input id="username" name="username" type="text" minlength="5" maxlength="20" placeholder="{{ user.username }}" pattern="^[A-Za-z0-9]+$" class="validate">
                     <label for="username">Username</label>
                     <span class="helper-text" data-error="Please enter a valid username"></span>
                 </div>
@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="input-field col s6">
                     <i class="prefix far fa-asterisk"></i>
-                    <input id="password" name="password" type="password" value="{{ user.password }}" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^...]).{8,}$" class="validate" required>
+                    <input id="password" name="password" type="password" placeholder="{{ user.password }}" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^...]).{8,}$" class="validate">
                     <label for="password">Password</label>
                     <span class="helper-text" data-error="Password must contain at least one capital letter, number and special character">Password must contain at least one capital letter, number and special character</span>
                 </div>

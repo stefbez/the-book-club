@@ -107,7 +107,7 @@ def logout():
     flash("You have been logged out")
     session.pop("user")
     # if session["is_admin"] == "on":
-    session.pop("is_admin")
+    # session.pop("is_admin")
     return redirect(url_for("login"))
 
 
@@ -228,7 +228,6 @@ def delete_user(user_id):
 def admin(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-
     users = list(mongo.db.users.find())
     books = list(mongo.db.books.find())
     return render_template(
@@ -240,15 +239,37 @@ def admin_edit_profile(user_id):
     this_user = mongo.db.users.find_one(
         {"username": user_id.lower()})
     if request.method == "POST":
-        edit_user = {
-            "first_name": request.form.get("first_name").lower(),
-            "last_name": request.form.get("last_name").lower(),
-            "username": request.form.get("username").lower(),
-            "password": generate_password_hash(
-                request.form.get("password")),
-            "is_admin": request.form.get("is_admin")
-        }
-        mongo.db.users.update({"_id": ObjectId(user_id)}, edit_user)
+        fname = request.form.get("first_name").lower()
+        lname = request.form.get("first_name").lower()
+        uname = request.form.get("username").lower()
+        psswrd = generate_password_hash(
+                request.form.get("password"))
+        is_admin = request.form.get("is_admin")
+        if fname != "":
+            mongo.db.users.update_one(
+                {"_id": ObjectId(user_id)}, {"$set": fname})
+        if lname != "":
+            mongo.db.users.update_one(
+                {"_id": ObjectId(user_id)}, {"$set": lname})
+        if uname != "":
+            mongo.db.users.update_one(
+                {"_id": ObjectId(user_id)}, {"$set": uname})
+        if psswrd != "":
+            mongo.db.users.update_one(
+                {"_id": ObjectId(user_id)}, {"$set": psswrd})
+        mongo.db.users.update_one(
+            {"_id": ObjectId(user_id)}, {"$set": is_admin})
+        # edit_user = {
+        #     "first_name": request.form.get("first_name").lower(),
+        #     "last_name": request.form.get("last_name").lower(),
+        #     "username": request.form.get("username").lower(),
+        #     "password": generate_password_hash(
+        #         request.form.get("password")),
+        #     "is_admin": request.form.get("is_admin")
+        # }
+        # mongo.db.users.update_one(
+        #     {"_id": ObjectId(user_id)}, {"$set": edit_user})
+        # mongo.db.users.update({"_id": ObjectId(user_id)}, edit_user)
         flash("User profile successfully updated")
         users = list(mongo.db.users.find())
         books = list(mongo.db.books.find())
@@ -259,6 +280,30 @@ def admin_edit_profile(user_id):
 
     return render_template(
         "admin_edit_profile.html", user=user, this_user=this_user)
+
+
+@app.route("/add_genre", methods=["GET", "POST"])
+def add_genre():
+    if request.method == "POST":
+        existing_genre = mongo.db.genre.find_one(
+            {"genre_name": request.form.get("genre_name").lower()})
+        if existing_genre:
+            flash("Genre already exists!")
+            return redirect(url_for("sign_up"))
+        add_genre = {
+            "genre_name": request.form.get("genre_name").lower()
+        }
+        mongo.db.genre.insert_one(add_genre)
+        flash("genre successfully added")
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        users = list(mongo.db.users.find())
+        books = list(mongo.db.books.find())
+        return render_template(
+            "admin.html", username=username, users=users, books=books)
+
+    genre = mongo.db.genre.find().sort("genre_name", 1)
+    return render_template("add_genre.html", genre=genre)
 
 
 if __name__ == "__main__":

@@ -5,6 +5,12 @@
 
 <h2 class="center-align">Admin</h2>
 <div class="row">
+    <div class="col s12">
+        <a class="waves-effect waves-light btn modal-trigger" href="{{ url_for('add_genre') }}">Add Genre</a>
+    </div>
+</div>
+
+<div class="row">
 <div class="col s12 m6">
 
 {% for book in books %}
