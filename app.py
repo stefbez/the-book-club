@@ -282,6 +282,45 @@ def admin_edit_profile(user_id):
         "admin_edit_profile.html", user=user, this_user=this_user)
 
 
+@app.route("/admin/edit_book/<book_id>", methods=["GET", "POST"])
+def admin_edit_book(book_id):
+    if request.method == "POST":
+        edit = {
+            "book_title": request.form.get("book_title").lower(),
+            "book_author": request.form.get("book_author").lower(),
+            "genre_name": request.form.get("genre_name"),
+            "book_cover": request.form.get("book_cover"),
+            "book_review": request.form.get("book_review"),
+            "review_by": request.form.get("review_by").lower()
+        }
+        mongo.db.books.update({"_id": ObjectId(book_id)}, edit)
+        flash("Book successfully updated")
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+
+        user = mongo.db.users.find_one({"username": session["user"]})
+        books = list(mongo.db.books.find({"review_by": session["user"]}))
+        return render_template(
+            "admin.html", username=username, user=user, books=books)
+
+    book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
+    genre = mongo.db.genre.find().sort("genre_name", 1)
+    return render_template("admin_edit_book.html", book=book, genre=genre)
+
+
+@app.route("/admin_delete_book/<book_id>")
+def admin_delete_book(book_id):
+    mongo.db.books.remove({"_id": ObjectId(book_id)})
+    flash("Book Successfully Deleted")
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+
+    user = mongo.db.users.find_one({"username": session["user"]})
+    books = list(mongo.db.books.find({"review_by": session["user"]}))
+    return render_template(
+        "admin.html", username=username, user=user, books=books)
+
+
 @app.route("/add_genre", methods=["GET", "POST"])
 def add_genre():
     if request.method == "POST":
