@@ -44,6 +44,22 @@
                     <span class="helper-text" data-error="Password must contain at least one capital letter, number and special character">Password must contain at least one capital letter, number and special character</span>
                 </div>
             </div>
+            <!-- Admin Status -->
+            <div class="row">
+                <div class="input-field col s6">
+                    <div class="switch">
+                        <label for="is_admin">
+                            {% if user.is_admin == "on" %}
+                            <input type="checkbox" id="is_admin disabled" name="is_admin" checked>
+                            {% else %}
+                            <input type="checkbox" id="is_admin disabled" name="is_admin">
+                            {% endif %}
+                            <span class="lever"></span>
+                            Admin
+                        </label>
+                    </div>
+                </div>
+            </div>
             <!-- Edit Cancel Delete Buttons -->
             <div class="row">
                 <div class="col s12 center-align">

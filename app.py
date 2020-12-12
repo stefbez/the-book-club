@@ -174,24 +174,24 @@ def edit_profile(user_id):
     this_user = mongo.db.users.find_one(
         {"username": session["user"].lower()})
     if request.method == "POST":
-
-        edit_user = {
+        if this_user['is_admin'] == "on":
+            edit_user = {
                 "first_name": request.form.get("first_name").lower(),
                 "last_name": request.form.get("last_name").lower(),
                 "username": request.form.get("username").lower(),
                 "password": generate_password_hash(
                     request.form.get("password")),
-                "is_admin": request.form.get("is_admin")
-        }
-        # else:
-        #     edit_user = {
-        #         "first_name": request.form.get("first_name").lower(),
-        #         "last_name": request.form.get("last_name").lower(),
-        #         "username": request.form.get("username").lower(),
-        #         "password": generate_password_hash(
-        #             request.form.get("password")),
-        #         "is_admin": "off"
-        #     }
+                "is_admin": "on"
+            }
+        else:
+            edit_user = {
+                "first_name": request.form.get("first_name").lower(),
+                "last_name": request.form.get("last_name").lower(),
+                "username": request.form.get("username").lower(),
+                "password": generate_password_hash(
+                    request.form.get("password")),
+                "is_admin": "off"
+            }
         mongo.db.users.update({"_id": ObjectId(user_id)}, edit_user)
         session["user"] = request.form.get("username").lower()
         flash("User profile successfully updated")
