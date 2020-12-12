@@ -321,16 +321,16 @@ def admin_delete_book(book_id):
         "admin.html", username=username, user=user, books=books)
 
 
-@app.route("/add_genre", methods=["GET", "POST"])
-def add_genre():
+@app.route("/edit_genre", methods=["GET", "POST"])
+def edit_genre():
     if request.method == "POST":
         existing_genre = mongo.db.genre.find_one(
-            {"genre_name": request.form.get("genre_name").lower()})
+            {"genre_name": request.form.get("add_genre_name").lower()})
         if existing_genre:
             flash("Genre already exists!")
             return redirect(url_for("sign_up"))
         add_genre = {
-            "genre_name": request.form.get("genre_name").lower()
+            "genre_name": request.form.get("add_genre_name").lower()
         }
         mongo.db.genre.insert_one(add_genre)
         flash("genre successfully added")
@@ -341,8 +341,22 @@ def add_genre():
         return render_template(
             "admin.html", username=username, users=users, books=books)
 
-    genre = mongo.db.genre.find().sort("genre_name", 1)
-    return render_template("add_genre.html", genre=genre)
+    genre = list(mongo.db.genre.find().sort("genre_name", 1))
+    return render_template("edit_genre.html", genre=genre)
+
+
+@app.route("/delete_genre/<genre_id>")
+def delete_genre(genre_id):
+    genreid = request.form.get("genre_name")
+    mongo.db.genre.remove(genreid)
+    flash("Genre Successfully Deleted")
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    user = mongo.db.users.find_one({"username": session["user"]})
+    books = list(mongo.db.books.find({"review_by": session["user"]}))
+    return render_template(
+        "admin.html", username=username,
+        user=user, books=books, genreid=genreid)
 
 
 if __name__ == "__main__":
