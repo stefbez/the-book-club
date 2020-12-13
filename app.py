@@ -33,6 +33,15 @@ def library():
         "library.html", books=books, genre=genre)
 
 
+@app.route("/search", methods=["GET", "POST"])
+def search():
+    query = request.form.get("query")
+    books = list(mongo.db.books.find({"$text": {"$search": query}}))
+    genre = list(mongo.db.genre.find())
+    return render_template(
+        "library.html", books=books, genre=genre)
+
+
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
