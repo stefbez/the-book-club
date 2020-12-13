@@ -26,23 +26,30 @@
             <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
             <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
             <li><a href="{{ url_for('logout') }}">Log Out</a></li>
-            <!-- UPDATE THIS IF STATEMENT -->
             {% if session.is_admin == "on" %}
             <li><a href="{{ url_for('admin', username=session['user']) }}">Admin</a></li>
             {% endif %}
-            <!-- UPDATE THIS IF STATEMENT -->
         {% else %}
             <li><a href="{{ url_for('login') }}">Log In</a></li>
             <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
         {% endif %}
-
-
       </ul>
     </div>
   </nav>
 
   <ul class="sidenav text-right" id="mobile-demo">
-<!-- Copy links from above -->
+        <li><a href="{{ url_for('library') }}">Library</a></li>
+        {% if session.user %}
+            <li><a href="{{ url_for('profile', username=session['user']) }}">Profile</a></li>
+            <li><a href="{{ url_for('add_book') }}">Add Book</a></li>
+            <li><a href="{{ url_for('logout') }}">Log Out</a></li>
+            {% if session.is_admin == "on" %}
+            <li><a href="{{ url_for('admin', username=session['user']) }}">Admin</a></li>
+            {% endif %}
+        {% else %}
+            <li><a href="{{ url_for('login') }}">Log In</a></li>
+            <li><a href="{{ url_for('sign_up') }}">Sign Up</a></li>
+        {% endif %}
   </ul>
     </header>
     <!-- flash message -->
