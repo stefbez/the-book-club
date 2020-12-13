@@ -347,8 +347,7 @@ def edit_genre():
 
 @app.route("/delete_genre/<genre_id>")
 def delete_genre(genre_id):
-    genreid = request.form.get("genre_name")
-    mongo.db.genre.remove(genreid)
+    mongo.db.genre.remove({"_id": ObjectId(genre_id)})
     flash("Genre Successfully Deleted")
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
@@ -356,7 +355,7 @@ def delete_genre(genre_id):
     books = list(mongo.db.books.find({"review_by": session["user"]}))
     return render_template(
         "admin.html", username=username,
-        users=users, books=books, genreid=genreid)
+        users=users, books=books)
 
 
 if __name__ == "__main__":

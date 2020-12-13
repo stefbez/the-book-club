@@ -30,46 +30,36 @@
 </div>
 
 <h2 class="center-align">Delete Genre</h2>
-
-
-<div class="row">
-    <form class="col s12" method="POST" action="{{ url_for('add_book') }}">
-        <!-- Genre dropdown -->
-        <div class="input-field col s12">
-            <select id="genre_name" name="genre_name" class="validate" required>
-                <option value="" disabled selected>Choose Genre</option>
-                {% for genres in genre %}
-                <option value="{{ genres.genre_name }}">{{ genres.genre_name|title() }}</option>
-                {% endfor %}
-            </select>
-            <label for="genre_name">Genre</label>
+{{ genre }}
+{% for genres in genre %}
+{{ genres.genre_name }}
+    <div class="row">
+    <div class="col s12 m7">
+      <div class="card card-style">
+        <div class="card-content">
+        <span class="card-title">{{ genres.genre_name|title() }}</span>
+        <a class="waves-effect waves-light btn modal-trigger" href="#{{ genres._id }}">...</a>
         </div>
-
-        <h1>{{ genre._id }}</h1>
-        <!-- delete button -->
-        <div class="row">
-            <div class="col s12 center-align">
-                <a class="waves-effect waves-light btn modal-trigger" href="#{{ genre._id }}">Delete
-                <i class="right"></i>
-                </a>
-            </div>
-        </div>
-    </form>
-</div>
-
-
-
-
-  <div id="{{ genre._id }}" class="modal delete-modal">
-    <div class="modal-content">
-      <h4>Are you sure you want to permanently delete '{{ genre.genre_name|title() }}'?</h4>
-    </div>
-    <div class="modal-footer delete-btn">
-        <a class="btn waves-effect waves-light" href="{{ url_for('edit_genre') }}">Cancel</a>
-        <a class="waves-effect waves-light btn red" href="#">Delete</a>
+      </div>
     </div>
   </div>
 
 
+
+
+
+
+
+  <div id="{{ genres._id }}" class="modal delete-modal">
+    <div class="modal-content">
+      <h4>Are you sure you want to permanently delete '{{ genres.genre_name|title() }}'?</h4>
+    </div>
+    <div class="modal-footer delete-btn">
+        <a class="btn waves-effect waves-light" href="{{ url_for('edit_genre') }}">Cancel</a>
+        <a class="waves-effect waves-light btn red" href="{{ url_for('delete_genre', genre_id=genres._id) }}">Delete</a>
+    </div>
+  </div>
+
+{% endfor %}
 
 {% endblock %}
