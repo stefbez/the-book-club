@@ -12,7 +12,9 @@
     <title>The Book Club</title>
 </head>
 <body>
-
+  <!-- Page and content cointainer used to push footer to the bottom of the page  -->
+    <div id="page-container">
+      <div id="content-wrap">
     <header>
       <nav>
     <div class="nav-wrapper">
@@ -63,5 +65,17 @@
     <script src="{{ url_for('static', filename='js/script.js') }}"></script>
     {% block scripts %}
     {% endblock %}
+          
+      <!-- Footer -->
+     </div> 
+     <footer class="center-align" id="footer">
+        <a href="https://github.com/stefbez" target="_blank"
+          >&copy; Stefan Bezzant
+          <script>
+            document.write(new Date().getFullYear());
+          </script>
+        </a>
+      </footer>
+    </div>
 </body>
 </html>
