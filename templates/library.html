@@ -4,13 +4,13 @@
 
 
 
-
-
+    <div class="row">
+ 
 {% for book in books %}
 
+ <div class="col s12 m3 library-card">
 
-    <div class="row">
-    <div class="col s12 m7">
+  
       <div class="card card-style">
         <div class="card-image">
           <img class="book-cover" src="{{ book.book_cover }}" alt="{{ book.book_title }}" />
@@ -20,9 +20,9 @@
         {{ book.book_author|title() }}</span>
         <a class="waves-effect waves-light btn modal-trigger" href="#{{ book._id }}">...</a>
         </div>
-      </div>
-    </div>
-  </div>
+     
+     </div>
+
 
   <!-- Modal Trigger -->
   
@@ -45,4 +45,5 @@
     
 {% endfor %}
 
+   </div>
 {% endblock %}
