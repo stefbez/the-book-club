@@ -57,7 +57,8 @@ font-family: 'Lora', serif; */
 }
 
 .sidenav,
-#page-container{
+#page-container,
+.modal{
     background: #D8EBFE;
 }
 
@@ -90,6 +91,25 @@ div.modal-footer.delete-btn {
 .col.modal-col{
     max-width: 50%;
  }  
+
+ @media (max-width: 576px) {
+    .col.modal-col{
+        max-width: 100%;
+        display: table-cell;
+ }  
+    .modal-table{
+        display: table;
+        width: 100%;
+    }
+    .book-cover{
+        max-height: 55vh;
+        margin-top: 25px;
+    }
+}
+
+.modal-table{
+    margin-top: 10px;
+}
 
  .modal-close-btn{
     top: 0;
