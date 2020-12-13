@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800&family=Lora&display=swap');
 
 
-/* fonts */
+/* fonts and text */
 
 .text-shadow{
     text-shadow: 1px -1px grey;
@@ -25,15 +25,19 @@ h2,
     color: white;
 }
 
+.review-by-text{
+    font-weight: 400;
+    font-style: italic;
+}
+
+a.modal-trigger{
+    color: black;
+}
 
 /* font-family: 'Lato', sans-serif;
 font-family: 'Lora', serif; */
 
 /* Header & nav */
-
-/* .nav-style li{
-    border-left: 1px solid gray;
-} */
 
 .sidenav{
     height: fit-content;
@@ -52,6 +56,7 @@ font-family: 'Lora', serif; */
     background: repeating-linear-gradient( to right, #054A91, #054A91 60px, #3E7CB1 60px, #3E7CB1 70px);
 }
 
+.sidenav,
 #page-container{
     background: #D8EBFE;
 }
@@ -79,6 +84,20 @@ font-family: 'Lora', serif; */
 div.modal-footer.delete-btn {
     text-align: center;
 }
+
+/* Modal */
+
+.col.modal-col{
+    max-width: 50%;
+ }  
+
+ .modal-close-btn{
+    top: 0;
+    right: 10px;
+    position: fixed;
+    font-size: 25px;
+    color: black;
+ }
 
 /* For footer - From https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/*/
 
