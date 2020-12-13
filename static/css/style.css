@@ -1,10 +1,79 @@
-/* .book-cover {
-    max-width: 20vw;
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;500;600;700;800&family=Lora&display=swap');
+
+
+/* fonts */
+
+.text-shadow{
+    text-shadow: 1px -1px grey;
+}
+
+.brand-logo{
+    font-family: 'Lora', serif;
+}
+
+.nav-wrapper,
+.sidenav,
+.card,
+h2,
+#footer-text{
+    font-family: 'Lato', sans-serif;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+
+#footer-text{
+    color: white;
+}
+
+
+/* font-family: 'Lato', sans-serif;
+font-family: 'Lora', serif; */
+
+/* Header & nav */
+
+/* .nav-style li{
+    border-left: 1px solid gray;
 } */
 
-/* div.card.card-style {
-    max-width: fit-content;
-} */
+.sidenav{
+    height: fit-content;
+    border-bottom-left-radius: 15px;
+    width: max-content;
+}
+
+.brand-logo{
+    width: fit-content;
+}
+
+/* Colors */
+
+.nav-wrapper,
+#footer{
+    background: repeating-linear-gradient( to right, #054A91, #054A91 60px, #3E7CB1 60px, #3E7CB1 70px);
+}
+
+#page-container{
+    background: #D8EBFE;
+}
+
+/* Horizantal rule */
+
+.hr-title{
+    width: 20vw;
+    margin-bottom: 20px;
+    border-color: #3e7cb1;
+}
+
+/* Book Cards */
+
+.book-card-content{
+    height: 100%;
+}
+
+.book-card-img{
+    height: 75%;
+}
+
 
 .modal.delete-modal,
 div.modal-footer.delete-btn {
@@ -19,12 +88,12 @@ div.modal-footer.delete-btn {
 }
 
 #content-wrap {
-  padding-bottom: 2.5rem;    /* Footer height */
+  padding-bottom: 3rem;    /* Footer height */
 }
 
 #footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 2.5rem;            /* Footer height */
+  height: 3rem;            /* Footer height */
 }

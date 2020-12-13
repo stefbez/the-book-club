@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>The Library</h2>
-
+    <h2 class="center-align">The Library</h2>
+    <hr class="hr-title">
 <div class="row card-panel">
     <form action="{{ url_for('search') }}" method="post" class="col s12">
         <div class="row valign-wrapper centre-align">
@@ -30,18 +30,21 @@
 
 
  
-    <div class="col s12 m3">
+    <div class="col s12 m6 l4 xl3">
       <div class="card large center-align">
-        <div class="card-image">
-          <img src="{{ book.book_cover }}">
+          <div class="card-content book-card-content">
+        <!-- <div class="card-image"> -->
+          <img src="{{ book.book_cover }}" class="book-card-img">
           
           <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a>
-        </div>
-        <div class="card-content">
+        
+        
             <span class="card-title">{{ book.book_title|title() }}</span>
           <p>{{ book.book_author|title() }}</p>
+          <p>{{ book.genre_name|title() }}</p>
           <a href="#{{ book._id }}" class="modal-trigger btn">...</a>
-        </div>
+    </div>
+    <!-- </div> -->
       </div>
     </div>
  <!-- modal -->
@@ -49,6 +52,7 @@
     <div class="modal-content">
       <h3>{{ book.book_title|title() }}</h3>
       <h4>{{ book.book_author|title() }}</h4>
+      <h4>{{ book.genre_name|title() }}</h4>
       <img class="book-cover" src="{{ book.book_cover }}" alt="{{ book.book_title }}" />
       <p>{{ book.book_review }} - {{ book.review_by }}</p>
       <a href="https://www.amazon.co.uk/s?k={{ book.book_title }}+{{ book.book_author }}" target="_blank">Buy Here</a>
