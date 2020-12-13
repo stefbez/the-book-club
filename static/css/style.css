@@ -59,7 +59,31 @@ font-family: 'Lora', serif; */
 .sidenav,
 #page-container,
 .modal{
-    background: #D8EBFE;
+    background-color: #EEF6FF;
+}
+
+.submit-btn{
+    background-color: #054A91;
+}
+
+.submit-btn:hover{
+    background-color: #125598;
+}
+
+.submit-btn:focus{
+    background-color: #125598;
+}
+
+.reset-btn{
+    background-color: #3E7CB1;
+}
+
+.reset-btn:hover{
+    background-color: #3171aa;
+}
+
+.reset-btn:focus{
+    background-color: #3171aa;
 }
 
 /* Horizantal rule */
