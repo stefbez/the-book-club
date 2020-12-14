@@ -64,6 +64,7 @@ font-family: 'Lora', serif; */
 
 .submit-btn{
     background-color: #054A91;
+    color: white;
 }
 
 .submit-btn:hover{
