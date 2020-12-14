@@ -7,11 +7,15 @@
     text-shadow: 1px -1px grey;
 }
 
+.nav-style{
+    text-shadow: -2px -2px 0px #054A91, 2px -2px 0px #054A91, -2px -1px 0px #054A91, 2px 2px 0px #054A91;
+}
+
 .brand-logo{
     font-family: 'Lora', serif;
 }
 
-.nav-wrapper,
+.nav-style,
 .sidenav,
 .card,
 h2,
@@ -49,11 +53,16 @@ font-family: 'Lora', serif; */
     width: fit-content;
 }
 
+.nav-style li a{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
 /* Colors */
 
 .nav-wrapper,
 #footer{
-    background: repeating-linear-gradient( to right, #054A91, #054A91 60px, #3E7CB1 60px, #3E7CB1 70px);
+    background: repeating-linear-gradient( to right, #054A91, #054A91 60px, #3E7CB1 60px, #3E7CB1 62px);
 }
 
 .sidenav,
