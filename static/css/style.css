@@ -71,28 +71,29 @@ font-family: 'Lora', serif; */
     background-color: #EEF6FF;
 }
 
-.submit-btn{
+a.modal-trigger.dark-btn,
+.dark-btn{
     background-color: #054A91;
     color: white;
 }
 
-.submit-btn:hover{
+.dark-btn:hover{
     background-color: #125598;
 }
 
-.submit-btn:focus{
+.dark-btn:focus{
     background-color: #125598;
 }
 
-.reset-btn{
+.light-btn{
     background-color: #3E7CB1;
 }
 
-.reset-btn:hover{
+.light-btn:hover{
     background-color: #3171aa;
 }
 
-.reset-btn:focus{
+.light-btn:focus{
     background-color: #3171aa;
 }
 

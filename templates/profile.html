@@ -7,7 +7,8 @@
 <hr class="hr-title">
 <div class="row">
 <div class="col">
-<a class="waves-effect waves-light btn btn-large submit-btn" href="{{ url_for('edit_profile', user_id=user._id) }}">Edit User Profile</a>
+
+<a class="center-align waves-effect waves-light btn-large submit-btn" href="{{ url_for('edit_profile', user_id=user._id) }}">Edit User Profile</a>
 </div>
 </div>
 
@@ -25,9 +26,11 @@
                 <img src="{{ book.book_cover }}" class="book-card-img">
                 <span class="card-title">{{ book.book_title|title() }}</span>
                 <p>{{ book.book_author|title() }}</p>
-                <a class="waves-effect waves-light btn modal-trigger"
+                        <div class="card-action">
+                <a class="waves-effect waves-light btn light-btn"
                     href="{{ url_for('edit_book', book_id=book._id) }}">Edit</a>
-                <a class="waves-effect waves-light btn modal-trigger" href="#{{ book._id }}">Delete</a>
+                <a class="waves-effect waves-light btn modal-trigger dark-btn" href="#{{ book._id }}">Delete</a>
+                 </div>
             </div>
         </div>
     </div>
@@ -38,8 +41,8 @@
             <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
         </div>
         <div class="modal-footer delete-btn">
-            <a class="btn waves-effect waves-light" href="{{ url_for('profile', username=session['user']) }}">Cancel</a>
-            <a class="waves-effect waves-light btn red" href="{{ url_for('delete_book', book_id=book._id) }}">Delete</a>
+            <a class="btn waves-effect waves-light light-btn" href="{{ url_for('profile', username=session['user']) }}">Cancel</a>
+            <a class="waves-effect waves-light btn dark-btn" href="{{ url_for('delete_book', book_id=book._id) }}">Delete</a>
         </div>
     </div>
 
