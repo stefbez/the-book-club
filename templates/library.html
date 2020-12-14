@@ -25,57 +25,58 @@
 {% if books|length > 0 %}
 
     <div class="row">
- 
-{% for book in books %}
-
-
- 
-    <div class="col s12 m6 l4 xl3">
-      <div class="card large center-align">
-          <div class="card-content book-card-content">
-              <a href="#{{ book._id }}" class="modal-trigger">
-        <!-- <div class="card-image"> -->
-          <img src="{{ book.book_cover }}" class="book-card-img">
-                    
-          <!-- <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
-        
-        
-            <span class="card-title">{{ book.book_title|title() }}</span>
-          <p>{{ book.book_author|title() }}</p>
-          <p>{{ book.genre_name|title() }}</p>
-</a>
-    </div>
-    <!-- </div> -->
-      </div>
-    </div>
- <!-- modal -->
-     <div id="{{ book._id }}" class="modal">
-        <div class="row valign-wrapper centre-align modal-table">
-            <div class="modal-col col">
-        <img class="book-cover responsive-img valign-wrapper" src="{{ book.book_cover }}" alt="{{ book.book_title }}" />
-
+    
+        {% for book in books %}
+    
+    
+    
+        <div class="col s12 m6 l4 xl3">
+            <div class="card large center-align">
+                <div class="card-content book-card-content">
+                    <a href="#{{ book._id }}" class="modal-trigger">
+                        <!-- <div class="card-image"> -->
+                        <img src="{{ book.book_cover }}" class="book-card-img">
+    
+                        <!-- <a class="btn-floating halfway-fab waves-effect waves-light red"><i class="material-icons">add</i></a> -->
+    
+    
+                        <span class="card-title">{{ book.book_title|title() }}</span>
+                        <p>{{ book.book_author|title() }}</p>
+                        <p>{{ book.genre_name|title() }}</p>
+                    </a>
+                </div>
+                <!-- </div> -->
             </div>
-        
-<div class="modal-col col">
-    <div class="modal-content">
-      <h3>{{ book.book_title|title() }}</h3>
-      <h4>{{ book.book_author|title() }}</h4>
-      <h4>{{ book.genre_name|title() }}</h4>
-      
-      <p>{{ book.book_review }} - <span class="review-by-text">{{ book.review_by }}</span></p>
-      <a href="https://www.amazon.co.uk/s?k={{ book.book_title }}+{{ book.book_author }}" target="_blank">Buy Here</a>
-    </div>
-    </div>
-    </div>
+        </div>
+        <!-- modal -->
+        <div id="{{ book._id }}" class="modal">
+            <div class="row valign-wrapper centre-align modal-table">
+                <div class="modal-col col">
+                    <img class="book-cover responsive-img valign-wrapper" src="{{ book.book_cover }}"
+                        alt="{{ book.book_title }}" />
     
-<a href="#!" class="modal-close modal-close-btn"><i class="fal fa-times-circle"></i></a>
+                </div>
     
-  </div>
-
-{% endfor %}
-
-   </div>
-
+                <div class="modal-col col">
+                    <div class="modal-content">
+                        <h3>{{ book.book_title|title() }}</h3>
+                        <h4>{{ book.book_author|title() }}</h4>
+                        <h4>{{ book.genre_name|title() }}</h4>
+    
+                        <p>{{ book.book_review }} - <span class="review-by-text">{{ book.review_by }}</span></p>
+                        <a href="https://www.amazon.co.uk/s?k={{ book.book_title }}+{{ book.book_author }}"
+                            target="_blank">Buy Here</a>
+                    </div>
+                </div>
+            </div>
+    
+            <a href="#!" class="modal-close modal-close-btn"><i class="fal fa-times-circle"></i></a>
+    
+        </div>
+    
+        {% endfor %}
+    
+    </div>
 
   
 
@@ -85,7 +86,7 @@
 
    {% else %}
    <h2>No Results</h2>
-   {% endif %}
+{% endif %}
 
 
 {% endblock %}
