@@ -199,6 +199,11 @@ i.arrow-up{
     margin-right: .75rem;
 }
 
+div.col.search-btns{
+    padding-left: 0;
+    padding-right: 0;
+}
+
 /* Admin */
 
 h3{
