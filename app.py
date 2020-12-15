@@ -263,8 +263,11 @@ def admin_edit_profile(user_id):
             mongo.db.users.update_one(
                 {"_id": ObjectId(user_id)},
                 {"$set": {"password": hashed_password}})
-        mongo.db.users.update_one(
-            {"_id": ObjectId(user_id)}, {"$set": {"is_admin": is_admin}})
+        admin_status = mongo.db.users.find_one(
+            {"_id": ObjectId(user_id)})
+        if is_admin != admin_status:
+            mongo.db.users.update_one(
+                {"_id": ObjectId(user_id)}, {"$set": {"is_admin": is_admin}})
         flash("User profile successfully updated")
         users = list(mongo.db.users.find())
         books = list(mongo.db.books.find())
