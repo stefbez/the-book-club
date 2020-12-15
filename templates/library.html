@@ -2,7 +2,7 @@
 {% block content %}
     <h2 class="center-align">The Library</h2>
     <hr class="hr-title">
-<div class="row card-panel">
+<div class="row card-panel search-library">
     <form action="{{ url_for('search') }}" method="post" class="col s12">
         <div class="row valign-wrapper centre-align">
             <div class="input-field col s12 m8 offset-m2">
@@ -33,7 +33,7 @@
         <div class="col s12 m6 l4">
             <div class="card large center-align">
                 <div class="card-content book-card-content">
-                    <a href="#{{ book._id }}" class="modal-trigger">
+                    <a href="#{{ book._id }}" class="modal-trigger library-card-text">
                         <!-- <div class="card-image"> -->
                         <img src="{{ book.book_cover }}" class="book-card-img">
     

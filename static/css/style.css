@@ -41,6 +41,10 @@ h3,
     font-size: 15px;
 }
 
+a.library-card-text{
+    color: black;
+}
+
 /* Header & nav */
 
 .sidenav{
@@ -182,6 +186,13 @@ i.arrow-up{
     color: #054A91;
     bottom: 5vh;
     left: 85vw;
+}
+
+/* Library */
+
+.search-library{
+    margin-left: .75rem;
+    margin-right: .75rem;
 }
 
 /* Admin */
