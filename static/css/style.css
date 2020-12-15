@@ -113,8 +113,12 @@ a.modal-trigger.dark-btn,
 
 /* Book Cards */
 
-.book-card-content{
+div.card-content.book-card-content{
     height: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .book-card-img{
@@ -199,6 +203,16 @@ i.arrow-up{
 
 h3{
     padding-left: 10px;
+}
+
+/* Truncate over 2 lines -- Code below found here: https://dropshado.ws/post/1015351370/webkit-line-clamp */
+
+.card a span.card-title.truncate-special{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
 }
 
 /* For footer - From https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/*/
