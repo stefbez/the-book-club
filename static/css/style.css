@@ -103,6 +103,12 @@ a.modal-trigger.dark-btn,
     background-color: #3171aa;
 }
 
+/* Hide */
+
+.hide{
+    display: none;
+}
+
 /* Horizantal rule */
 
 .hr-title{

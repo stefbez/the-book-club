@@ -183,7 +183,6 @@ def edit_profile(user_id):
         last_name = request.form.get("last_name").lower()
         username = request.form.get("username").lower()
         password = request.form.get("password")
-        is_admin = request.form.get("is_admin")
         if first_name != "":
             mongo.db.users.update_one(
                 {"_id": ObjectId(user_id)},
@@ -200,8 +199,6 @@ def edit_profile(user_id):
             mongo.db.users.update_one(
                 {"_id": ObjectId(user_id)},
                 {"$set": {"password": hashed_password}})
-        mongo.db.users.update_one(
-            {"_id": ObjectId(user_id)}, {"$set": {"is_admin": is_admin}})
         flash("User profile successfully updated")
         session["user"] = request.form.get("username").lower()
         user = mongo.db.users.find_one({"username": session["user"]})
