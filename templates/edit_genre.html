@@ -1,11 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h2 class="center-align">Edit Genre</h2>
+<h2 class="center-align">Add Genre</h2>
 
 
 <div class="row">
-    <form class="col s12" method="POST" action="{{ url_for('edit_genre') }}">
+    <form class="col s12 m8 offset-m2 l6 offset-l3" method="POST" action="{{ url_for('edit_genre') }}">
         <!-- Genre -->
         <div class="row">
             <div class="input-field col s12">
@@ -17,12 +17,12 @@
         <!-- Submit button -->
         <div class="row">
             <div class="col s12 center-align">
-                <a href="{{ url_for('admin', username=session['user']) }}" class="btn red waves-effect waves-light">
-                Cancel
-                <i class="right"></i>
+                <a href="{{ url_for('admin', username=session['user']) }}" class="btn waves-effect waves-light dark-btn">
+                    Cancel
+                    <i class="right"></i>
                 </a>
-                <button class="btn waves-effect waves-light" type="submit">Add Book
-                <i class="right"></i>
+                <button class="btn waves-effect waves-light light-btn" type="submit">Add Genre
+                    <i class="right"></i>
                 </button>
             </div>
         </div>
@@ -30,36 +30,33 @@
 </div>
 
 <h2 class="center-align">Delete Genre</h2>
-{{ genre }}
+
+<div class="row">
 {% for genres in genre %}
-{{ genres.genre_name }}
-    <div class="row">
-    <div class="col s12 m7">
-      <div class="card card-style">
-        <div class="card-content">
-        <span class="card-title">{{ genres.genre_name|title() }}</span>
-        <a class="waves-effect waves-light btn modal-trigger" href="#{{ genres._id }}">...</a>
+
+    <div class="col s12 m6 l4">
+        <a class="modal-trigger" href="#{{ genres._id }}">
+        <div class="card card-style">
+            
+            <div class="card-content light-btn center-align">
+                
+                <span class="card-title truncate">{{ genres.genre_name|title() }}</span> 
+            </div>
         </div>
-      </div>
+     </a>
     </div>
-  </div>
 
 
-
-
-
-
-
-  <div id="{{ genres._id }}" class="modal delete-modal">
+<div id="{{ genres._id }}" class="modal delete-modal">
     <div class="modal-content">
-      <h4>Are you sure you want to permanently delete '{{ genres.genre_name|title() }}'?</h4>
+        <h4>Are you sure you want to permanently delete '{{ genres.genre_name|title() }}'?</h4>
     </div>
     <div class="modal-footer delete-btn">
-        <a class="btn waves-effect waves-light" href="{{ url_for('edit_genre') }}">Cancel</a>
-        <a class="waves-effect waves-light btn red" href="{{ url_for('delete_genre', genre_id=genres._id) }}">Delete</a>
+        <a class="btn waves-effect waves-light light-btn" href="{{ url_for('edit_genre') }}">Cancel</a>
+        <a class="waves-effect waves-light btn dark-btn" href="{{ url_for('delete_genre', genre_id=genres._id) }}">Delete</a>
     </div>
-  </div>
+</div>
 
 {% endfor %}
-
+</div>
 {% endblock %}
