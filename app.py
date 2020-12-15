@@ -345,12 +345,6 @@ def edit_genre():
         }
         mongo.db.genre.insert_one(add_genre)
         flash("Genre successfully added")
-        username = mongo.db.users.find_one(
-            {"username": session["user"]})["username"]
-        users = list(mongo.db.users.find())
-        books = list(mongo.db.books.find())
-        return render_template(
-            "admin.html", username=username, users=users, books=books)
 
     genre = list(mongo.db.genre.find().sort("genre_name", 1))
     return render_template("edit_genre.html", genre=genre)
@@ -360,13 +354,9 @@ def edit_genre():
 def delete_genre(genre_id):
     mongo.db.genre.remove({"_id": ObjectId(genre_id)})
     flash("Genre Successfully Deleted")
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["username"]
-    users = list(mongo.db.users.find())
-    books = list(mongo.db.books.find({"review_by": session["user"]}))
-    return render_template(
-        "admin.html", username=username,
-        users=users, books=books)
+
+    genre = list(mongo.db.genre.find().sort("genre_name", 1))
+    return render_template("edit_genre.html", genre=genre)
 
 
 if __name__ == "__main__":
