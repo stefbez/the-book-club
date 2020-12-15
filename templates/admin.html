@@ -11,64 +11,79 @@
     </div>
 </div>
 
+<h2>All Books</h2>
+
 <div class="row">
-<div class="col s12 m6">
 
-{% for book in books %}
+    {% for book in books %}
 
 
-    <div class="row">
-    <div class="col s12 m7">
-      <div class="card card-style">
-        <div class="card-image">
-          <img class="book-cover" src="{{ book.book_cover }}" alt="{{ book.book_title }}" />
+
+    <div class="col s12 m6 l4 xl3">
+        <div class="card large center-align">
+            <div class="card-content book-card-content">
+
+                <!-- <div class="card-image"> -->
+                <img src="{{ book.book_cover }}" class="book-card-img">
+                <span class="card-title">{{ book.book_title|title() }}</span>
+                <p>{{ book.book_author|title() }}</p>
+                <p>{{ book.review_by }}</p>
+                        <div class="card-action">
+                <a class="waves-effect waves-light btn light-btn"
+                    href="{{ url_for('admin_edit_book', book_id=book._id) }}">Edit</a>
+                <a class="waves-effect waves-light btn modal-trigger dark-btn" href="#{{ book._id }}">Delete</a>
+                 </div>
+            </div>
         </div>
-        <div class="card-content">
-        <span class="card-title">{{ book.book_title|title() }}<br>
-        {{ book.book_author|title() }}<br>
-        {{ book.review_by|title() }}</span>
-        <a class="waves-effect waves-light btn modal-trigger" href="{{ url_for('admin_edit_book', book_id=book._id) }}">Edit</a>
-        <a class="waves-effect waves-light btn modal-trigger" href="#{{ book._id }}">Delete</a>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <div id="{{ book._id }}" class="modal delete-modal">
-    <div class="modal-content">
-      <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
+
+    <div id="{{ book._id }}" class="modal delete-modal">
+        <div class="modal-content">
+            <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
+        </div>
+        <div class="modal-footer delete-btn">
+            <a class="btn waves-effect waves-light light-btn" href="{{ url_for('admin', username=session['user']) }}">Cancel</a>
+            <a class="waves-effect waves-light btn dark-btn" href="{{ url_for('admin_delete_book', book_id=book._id) }}">Delete</a>
+        </div>
     </div>
-    <div class="modal-footer delete-btn">
-        <a class="btn waves-effect waves-light" href="{{ url_for('admin', username=session['user']) }}">Cancel</a>
-        <a class="waves-effect waves-light btn red" href="{{ url_for('admin_delete_book', book_id=book._id) }}">Delete</a>
-    </div>
-  </div>
+
+
+    {% endfor %}
 </div>
 
-    
-{% endfor %}
-</div>
-<div class="col s12 m6">
+<h2>Users</h2>
+
+ <div class="row">
+
 
 {% for user in users %}
 
-{{ user }}
     
-    <div class="row">
-    <div class="col s12 m7">
+   
+    <div class="col s12 m4 l3">
       <div class="card card-style">
         <div class="card-content">
         <span class="card-title">{{ user.username|title() }}<br>
         {{ user.first_name|title() }}<br>
         {{ user.last_name|title() }}</span>
         <a class="waves-effect waves-light btn modal-trigger" href="{{ url_for('admin_edit_profile', user_id=user._id) }}">Edit</a>
-        <a class="waves-effect waves-light btn modal-trigger" href="#">Delete</a>
+        <a class="waves-effect waves-light btn modal-trigger" href="#{{ user._id }}">Delete</a>
         </div>
       </div>
+    </div>
+        <div id="{{ user._id }}" class="modal delete-modal">
+        <div class="modal-content">
+            <h4>Are you sure you want to permanently delete '{{ user.username|title() }}'?</h4>
+        </div>
+        <div class="modal-footer delete-btn">
+            <a class="btn waves-effect waves-light light-btn" href="{{ url_for('admin', username=session['user']) }}">Cancel</a>
+            <a class="waves-effect waves-light btn dark-btn" href="{{ url_for('admin_delete_user', user_id=user._id) }}">Delete</a>
+        </div>
     </div>
 
 
 {% endfor %}
-  </div>
+
 </div>
 {% endblock %}

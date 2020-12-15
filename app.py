@@ -115,8 +115,6 @@ def profile(username):
 def logout():
     flash("You have been logged out")
     session.pop("user")
-    if session["is_admin"] == "on":
-        session.pop("is_admin")
     return redirect(url_for("login"))
 
 
@@ -284,6 +282,17 @@ def admin_edit_profile(user_id):
         "admin_edit_profile.html", user=user, this_user=this_user)
 
 
+@app.route("/admin_delete_user/<user_id>")
+def admin_delete_user(user_id):
+    mongo.db.users.remove({"_id": ObjectId(user_id)})
+    list(mongo.db.books.remove({"review_by": session["user"]}))
+    flash("User Successfully Deleted")
+    users = list(mongo.db.users.find())
+    books = list(mongo.db.books.find())
+    return render_template(
+        "admin.html", users=users, books=books)
+
+
 @app.route("/admin/edit_book/<book_id>", methods=["GET", "POST"])
 def admin_edit_book(book_id):
     if request.method == "POST":
@@ -300,10 +309,10 @@ def admin_edit_book(book_id):
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
 
-        user = mongo.db.users.find_one({"username": session["user"]})
+        users = list(mongo.db.users.find())
         books = list(mongo.db.books.find({"review_by": session["user"]}))
         return render_template(
-            "admin.html", username=username, user=user, books=books)
+            "admin.html", username=username, users=users, books=books)
 
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     genre = mongo.db.genre.find().sort("genre_name", 1)
