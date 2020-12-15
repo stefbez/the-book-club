@@ -153,7 +153,27 @@ div.modal-footer.delete-btn {
     position: fixed;
     font-size: 25px;
     color: black;
- }
+}
+
+/* Scrollspy */
+
+.table-of-contents a.active {
+    border-left: 2px solid #3e7cb1;
+}
+
+.table-of-contents a:hover {
+    border-left: 1px solid #3e7cb1;
+}
+
+ /* Up arrow on mobile */
+
+i.arrow-up{
+    position: fixed;
+    font-size: 35px;
+    color: rgb(32 74 145 / 50%);
+    bottom: 5vh;
+    left: 85vw;
+}
 
 /* For footer - From https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/*/
 
