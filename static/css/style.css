@@ -19,6 +19,7 @@
 .sidenav,
 .card,
 h2,
+h3,
 #footer-text{
     font-family: 'Lato', sans-serif;
     font-weight: 500;
@@ -172,6 +173,21 @@ i.arrow-up{
     color: #054A91;
     bottom: 5vh;
     left: 85vw;
+}
+
+/* Admin */
+
+h3{
+    padding-left: 10px;
+}
+
+li.scroll-header{
+    padding-left: 16px;
+    text-decoration: underline;
+}
+
+ul.admin-scrollspy{
+    top: 50vh;
 }
 
 /* For footer - From https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/*/

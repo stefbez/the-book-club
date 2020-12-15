@@ -4,6 +4,7 @@
 
 <div id="top" class="section scrollspy">
 <h2 class="center-align">Admin</h2>
+<hr class="hr-title">
 </div>
 <div class="row">
     <div class="center-align">
@@ -22,7 +23,7 @@
 
             <div class="row">
                 <div id="allBooks" class="section scrollspy">
-                    <h2 class="active">All Books</h2>
+                    <h3 class="active">All Books</h3>
 
                     {% for book in books %}
 
@@ -68,7 +69,7 @@
             </div>
             <div class="row">
                 <div id="allUsers" class="section scrollspy">
-                    <h2>Users</h2>
+                    <h3>Users</h3>
 
                     {% for user in users %}
 
@@ -112,7 +113,8 @@
         </div>
 
         <div class="col hide-on-small-only m2">
-            <ul class="section table-of-contents pinned">
+            <ul class="section table-of-contents pinned admin-scrollspy">
+                <li class="scroll-header">Navigation</li>
                 <li><a href="#editGenre">Edit Genre</a></li>
                 <li><a href="#allBooks">All Books</a></li>
                 <li><a href="#allUsers">All Users</a></li>
