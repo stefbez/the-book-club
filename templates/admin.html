@@ -32,11 +32,11 @@
                     <div class="col s12 m6 xl4">
 
                         <div class="card large center-align">
-                            <div class="card-content book-card-content">
+                            <div class="card-content book-card-content admin-book-card">
 
                                 <!-- <div class="card-image"> -->
                                 <img src="{{ book.book_cover }}" class="book-card-img">
-                                <span class="card-title">{{ book.book_title|title() }}</span>
+                                <span class="card-title truncate">{{ book.book_title|title() }}</span>
                                 <p>{{ book.book_author|title() }}</p>
                                 <p>{{ book.review_by }}</p>
                                 <div class="card-action">
@@ -82,9 +82,9 @@
                                 <span class="card-title truncate">{{ user.username|title() }}<br>
                                     {{ user.first_name|title() }}<br>
                                     {{ user.last_name|title() }}</span>
-                                <a class="waves-effect waves-light btn modal-trigger"
+                                <a class="waves-effect waves-light btn modal-trigger light-btn"
                                     href="{{ url_for('admin_edit_profile', user_id=user._id) }}">Edit</a>
-                                <a class="waves-effect waves-light btn modal-trigger" href="#{{ user._id }}">Delete</a>
+                                <a class="waves-effect waves-light btn modal-trigger dark-btn" href="#{{ user._id }}">Delete</a>
                             </div>
                         </div>
                     </div>

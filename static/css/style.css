@@ -131,6 +131,19 @@ div.card-content.book-card-content{
     height: 75%;
 }
 
+div.card-content.book-card-content.admin-book-card{
+    padding-bottom: 65px;
+}
+
+/* Flash Message */
+
+.flash-msg-text{
+    background-color: #125598;
+    color: white;
+    padding: .75rem;
+    margin: .75rem;
+}
+
 /* Modal */
 
 .modal.delete-modal,
