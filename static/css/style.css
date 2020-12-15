@@ -121,6 +121,17 @@ a.modal-trigger.dark-btn,
     display: none;
 }
 
+/* Mobile view */
+
+@media (max-width: 576px) {
+    .cancel-submit-delete-btns{
+        display: grid;
+    }
+    .cancel-submit-delete-btns .grid-btn{
+        margin: .5rem;
+    }
+}
+
 /* Horizantal rule */
 
 .hr-title{
@@ -167,11 +178,11 @@ div.modal-footer.delete-btn {
     max-width: 50%;
  }  
 
- @media (max-width: 576px) {
+@media (max-width: 576px) {
     .col.modal-col{
         max-width: 100%;
         display: table-cell;
- }  
+    }  
     .modal-table{
         display: table;
         width: 100%;

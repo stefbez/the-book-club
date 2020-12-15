@@ -7,11 +7,11 @@
     <p class="center-align">If you update your username or password, please remember what you update this to in order to login next time</p>
     
     <div class="row">
-        <form class="col s12 m8 offset-m4" method="POST" action="{{ url_for('edit_profile', user_id=user._id) }}">
+        <form class="col s12 m8 offset-m2 l6 offset-l3" method="POST" action="{{ url_for('edit_profile', user_id=user._id) }}">
        
         <!-- First Name -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     <i class="prefix far fa-book-user"></i>
                     <input id="first_name" name="first_name" type="text" minlength="2" maxlength="25" value="{{ user.first_name|title() }}" pattern="^[A-Za-z -]+$" class="validate" required>
                     <label for="first_name">First Name</label>
@@ -20,7 +20,7 @@
             </div>
             <!-- Last Name -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     <i class="prefix far fa-book-user"></i>
                     <input id="last_name" name="last_name" type="text" minlength="2" maxlength="25" value="{{ user.last_name|title() }}" pattern="^[A-Za-z -]+$" class="validate" required>
                     <label for="last_name">Last Name</label>
@@ -29,7 +29,7 @@
             </div>
             <!-- Username -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     <i class="prefix fad fa-user-tie"></i>
                     <input id="username" name="username" type="text" minlength="5" maxlength="20" value="{{ user.username }}" pattern="^[A-Za-z0-9]+$" class="validate" required>
                     <label for="username">Username</label>
@@ -38,7 +38,7 @@
             </div>
             <!-- Password -->
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12">
                     <i class="prefix far fa-asterisk"></i>
                     <input id="password" name="password" type="password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^...]).{8,}$" class="validate">
                     <label for="password">Password</label>
@@ -47,15 +47,15 @@
             </div>
             <!-- Edit Cancel Delete Buttons -->
             <div class="row">
-                <div class="col center-align">
-                    <a href="{{ url_for('profile', username=session['user']) }}" class="btn dark-btn waves-effect waves-light">
+                <div class="col s12 center-align cancel-submit-delete-btns">
+                    <a href="{{ url_for('profile', username=session['user']) }}" class="btn dark-btn waves-effect waves-light grid-btn">
                     Cancel
                     <i class="right"></i>
                     </a>
-                    <button class="btn waves-effect waves-light light-btn" type="submit">Edit Profile
+                    <button class="btn waves-effect waves-light light-btn grid-btn" type="submit">Edit Profile
                     <i class="right"></i>
                     </button>
-                    <a class="waves-effect waves-light btn modal-trigger dark-btn" href="#{{ user._id }}">Delete</a>
+                    <a class="waves-effect waves-light btn modal-trigger dark-btn grid-btn" href="#{{ user._id }}">Delete</a>
                 </div>
             </div>
         </form>
