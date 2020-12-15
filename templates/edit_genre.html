@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
-
+<div id="top" class="section scrollspy">
 <h2 class="center-align">Add Genre</h2>
-
+</div>
 
 <div class="row">
     <form class="col s12 m8 offset-m2 l6 offset-l3" method="POST" action="{{ url_for('edit_genre') }}">
@@ -34,7 +34,7 @@
 <div class="row">
 {% for genres in genre %}
 
-    <div class="col s12 m6 l4">
+    <div class="col s10 offset-s1 m6 l4">
         <a class="modal-trigger" href="#{{ genres._id }}">
         <div class="card card-style">
             
@@ -59,4 +59,8 @@
 
 {% endfor %}
 </div>
+
+        <div class="col hide-on-med-and-up">
+            <a href="#top"><i class="fad fa-arrow-alt-square-up arrow-up"></i></a>
+        </div>
 {% endblock %}

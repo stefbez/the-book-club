@@ -165,8 +165,8 @@ div.modal-footer.delete-btn {
 
 i.arrow-up{
     position: fixed;
-    font-size: 35px;
-    color: rgb(32 74 145 / 50%);
+    font-size: 45px;
+    color: #054A91;
     bottom: 5vh;
     left: 85vw;
 }
