@@ -165,6 +165,15 @@ div.modal-footer.delete-btn {
     border-left: 1px solid #3e7cb1;
 }
 
+li.scroll-header{
+    padding-left: 16px;
+    text-decoration: underline;
+}
+
+ul.admin-scrollspy{
+    top: 50vh;
+}
+
  /* Up arrow on mobile */
 
 i.arrow-up{
@@ -179,15 +188,6 @@ i.arrow-up{
 
 h3{
     padding-left: 10px;
-}
-
-li.scroll-header{
-    padding-left: 16px;
-    text-decoration: underline;
-}
-
-ul.admin-scrollspy{
-    top: 50vh;
 }
 
 /* For footer - From https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/*/
