@@ -45,6 +45,10 @@ a.library-card-text{
     color: black;
 }
 
+.sidenav li>a{
+    font-size: 18px;
+}
+
 /* Header & nav */
 
 .sidenav{
@@ -60,6 +64,14 @@ a.library-card-text{
 .nav-style li a{
     padding-left: 10px;
     padding-right: 10px;
+}
+
+header ul.sidenav{
+    padding-bottom: 0.75rem;
+}
+
+.sidenav li>a{
+    margin: 2.5rem;
 }
 
 /* Colors */
