@@ -87,6 +87,7 @@ a.modal-trigger.dark-btn,
 
 .light-btn{
     background-color: #3E7CB1;
+    color: white;
 }
 
 .light-btn:hover{

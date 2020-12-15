@@ -21,7 +21,7 @@ mongo = PyMongo(app)
 @app.route("/")
 @app.route("/library")
 def library():
-    books = list(mongo.db.books.find())
+    books = list(mongo.db.books.find().sort("book_title", 1))
     genre = list(mongo.db.genre.find())
     # if "user" in session:
     #     print(session["user"])
@@ -236,8 +236,8 @@ def delete_user(user_id):
 def admin(username):
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-    users = list(mongo.db.users.find())
-    books = list(mongo.db.books.find())
+    users = list(mongo.db.users.find().sort("username", 1))
+    books = list(mongo.db.books.find().sort("book_title", 1))
     return render_template(
         "admin.html", username=username, users=users, books=books)
 
@@ -344,7 +344,7 @@ def edit_genre():
             "genre_name": request.form.get("add_genre_name").lower()
         }
         mongo.db.genre.insert_one(add_genre)
-        flash("genre successfully added")
+        flash("Genre successfully added")
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
         users = list(mongo.db.users.find())
