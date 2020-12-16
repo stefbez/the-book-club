@@ -21,6 +21,13 @@
         </div>
     </form>
 </div>
+<div class="row">
+    <div class="col s12 center-align cancel-submit-delete-btns">
+        <a href="{{ url_for('library') }}" class="btn grid-btn dark-btn">Sort by Title</a>
+        <a href="{{ url_for('library_author_sort') }}" class="btn grid-btn light-btn">Sort by Author</a>
+        <a href="{{ url_for('library_genre_sort') }}" class="btn grid-btn dark-btn">Sort by Genre</a>
+    </div>
+</div>
 
 {% if books|length > 0 %}
 

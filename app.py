@@ -23,11 +23,6 @@ mongo = PyMongo(app)
 def library():
     books = list(mongo.db.books.find().sort("book_title", 1))
     genre = list(mongo.db.genre.find())
-    # if "user" in session:
-    #     print(session["user"])
-    #     user = mongo.db.users.find_one({"username": session["user"].lower()})
-    # else:
-    #     user = None
 
     return render_template(
         "library.html", books=books, genre=genre)
@@ -38,6 +33,24 @@ def search():
     query = request.form.get("query")
     books = list(mongo.db.books.find({"$text": {"$search": query}}))
     genre = list(mongo.db.genre.find())
+    return render_template(
+        "library.html", books=books, genre=genre)
+
+
+@app.route("/library_author_sort")
+def library_author_sort():
+    books = list(mongo.db.books.find().sort("book_author", 1))
+    genre = list(mongo.db.genre.find())
+
+    return render_template(
+        "library.html", books=books, genre=genre)
+
+
+@app.route("/library_genre_sort")
+def library_genre_sort():
+    books = list(mongo.db.books.find().sort("genre_name", 1))
+    genre = list(mongo.db.genre.find())
+
     return render_template(
         "library.html", books=books, genre=genre)
 
@@ -104,7 +117,8 @@ def profile(username):
 
     if session["user"]:
         user = mongo.db.users.find_one({"username": session["user"]})
-        books = list(mongo.db.books.find({"review_by": session["user"]}))
+        books = list(mongo.db.books.find(
+            {"review_by": session["user"]}).sort("book_title", 1))
         return render_template(
             "profile.html", username=username, user=user, books=books)
 
