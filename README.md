@@ -40,6 +40,8 @@ Writing user stories was an important step in understanding how my website shoul
 
 Mockups, created on Balsamiq, were the first stage of planning the website can be found [here](/mockups/the-book-club-mockups.pdf)
 
+I created a copy of the database structure that can be viewed [here](/mockups/database-structure.png)
+
 The styling has changed slightly from the mockups, featuring a larger search bar on the library page to encourage users to search for favourite authors or genres or to find a review for a book theyve considered reading. Across the site a few buttons have changed or been positioned differently to shown to enhance UX.
 
 ## Features
