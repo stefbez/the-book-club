@@ -1,7 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
+<div id="top" class="section scrollspy">
     <h2 class="center-align">The Library</h2>
     <hr class="hr-title">
+</div>
 <div class="row card-panel search-library">
     <form action="{{ url_for('search') }}" method="post" class="col s12">
         <div class="row valign-wrapper centre-align">
@@ -86,7 +88,9 @@
     </div>
 
   
-
+        <div class="col hide-on-large-only">
+            <a href="#top"><i class="fad fa-arrow-alt-square-up arrow-up"></i></a>
+        </div>
       
 
     

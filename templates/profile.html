@@ -2,9 +2,10 @@
 {% block content %}
 
 
-
+<div id="top" class="section scrollspy">
 <h2 class="center-align">{{ username|capitalize() }}'s Profile</h2>
 <hr class="hr-title">
+</div>
 <div class="row">
 <div class="center-align">
 
@@ -48,5 +49,8 @@
 
 
     {% endfor %}
+            <div class="col hide-on-large-only">
+            <a href="#top"><i class="fad fa-arrow-alt-square-up arrow-up"></i></a>
+        </div>
 </div>
 {% endblock %}

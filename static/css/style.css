@@ -230,10 +230,10 @@ ul.admin-scrollspy{
 
 i.arrow-up{
     position: fixed;
-    font-size: 45px;
+    font-size: 50px;
     color: #054A91;
     bottom: 5vh;
-    left: 85vw;
+    right: 2%;
 }
 
 /* Library */
