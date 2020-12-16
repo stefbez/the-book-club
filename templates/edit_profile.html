@@ -66,12 +66,10 @@
   <div id="{{ user._id }}" class="modal delete-modal">
     <div class="modal-content">
       <h4>Are you sure you want to permanently delete '{{ user.username|title() }}'?</h4>
-      <h1>user_id test:{{ user_id }}</h1>
-      <h1>user._id test:{{ user._id }}</h1>
     </div>
     <div class="modal-footer delete-btn">
-        <a class="btn waves-effect waves-light" href="{{ url_for('edit_profile', user_id=user._id) }}">Cancel</a>
-        <a class="waves-effect waves-light btn red" href="{{ url_for('delete_user', user_id=user._id) }}">Delete</a>
+        <a class="btn waves-effect waves-light light-btn" href="{{ url_for('edit_profile', user_id=user._id) }}">Cancel</a>
+        <a class="waves-effect waves-light btn dark-btn" href="{{ url_for('delete_user', user_id=user._id) }}">Delete</a>
     </div>
   </div>
 
