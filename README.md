@@ -33,12 +33,12 @@ Writing user stories was an important step in understanding how my website shoul
 * As a user i want to delete books that i've posted if I don't want it to appear anymore
 * As a user I want to be able to delete my profile if I no longer want to use the site
 * As an admin user I want to have full access to edit all posts by all users
-* As an admin I want to be able to add new genres and edit them in the database from the website
+* As an admin I want to be able to add new genres and delete them in the database from the website
 * As an admin user I want to be able to edit users details and delete their profile if needed
 
 ### Mockups
 
-Mockups created as the first stage of planning the website can be found [here](/mockups/the-book-club-mockups.pdf)
+Mockups, created on Balsamiq, were the first stage of planning the website can be found [here](/mockups/the-book-club-mockups.pdf)
 
 The styling has changed slightly from the mockups, featuring a larger search bar on the library page to encourage users to search for favourite authors or genres or to find a review for a book theyve considered reading. Across the site a few buttons have changed or been positioned differently to shown to enhance UX.
 
@@ -73,6 +73,7 @@ The styling has changed slightly from the mockups, featuring a larger search bar
 
 * A book shop linked to the review site
 * A chat feature so readers can discuss the books with each other after reading
+* Give the user the option to upload a picture of the book cover linked to a cloud source
 
 ## Technologies Used
 
@@ -99,7 +100,7 @@ Tested the HTML pages, CSS, Python & Javascript on the [HTML validator website](
 
 #### HTML errors:
 
-* Warnings and errors are all centered around the lack of "doctype" and the use of the Jinja template throughout.
+* Warnings and errors are all centered around the lack of "doctype" and the use of the Jinja template throughout. The html files inherit the DOCTYPE and head tags including links to required sources (JS, CSS and CDNs) from the base.html page. These errors are acceptable as the validator does not recognise Jinja templating.
 
 #### CSS errors:
 
@@ -123,6 +124,8 @@ Tested on the following devices:
 * Samsung Galaxy A40 - Samsung Browser, Safari, Chrome, Edge, Firefox, Opera
 
 Multiple screen sizes were tested using Chrome developer tools on the MacBook, including Moto G4, Galaxy S5, Pixel 2, iPhone 5/SE, iPhone 6/7/8, iPhone 6/7/8 Plus, iPhone X, iPad, iPad Pro, Desktop and 4K TV screens.
+
+The site appeared and behaved as expected when testing on all different browser sizes
 
 ### Testing Process
 
@@ -164,8 +167,53 @@ Testing involved checking each function on the website across all devices and br
 
 ### Testing User Stories
 
+* As a user I want to see the sites name upon entering
+    * When the user enters the site they can clearly see 'The Book Club' on the top of the page. They will also see it on every subsequent page
 
+* As a user I want to find books easily on the main page
+    * The library page has all books listed in alphabetical order according to the title. There is also a seach function built in that the user can search for key words of a book's title, author or genre.
+    * During testing I found the need to include other sort functions to the home page to easily find books. I have now included buttons to sort by Title, Author and Genre
 
+* As a user I want to see each book's cover photo to find it easily, as if in a library
+    * The library page displays book cover photo's that the user has uploaded. The book cover photos for books that individual user has uploaded are availble to view on the profile page, as well as the ability to edit and delete books from there. And the admin page contains all books with book cover images with the ability to edit and delete
+
+* As a user and book reader I want to be able to purchase the book recommended with a direct link
+    * On the library page, once the user clicks on a book for more information, a 'Buy Here' button appears below all of the book information
+
+* As a user and bookworm I want to see user reviews before choosing which book I want to read next
+    * User reviews are easily available from the library page, when you click on a book a modal appears with the user review on it
+
+* As a user who knows what I'm looking for, I want a search function for book title, author name or genre
+    * A search function is available on the library page, users are able to search by book title, author or genre
+
+* As a user and book reader I want to recommend books to others by adding them to the website
+    * The add book function allows users to upload books, with the users own review for others to see
+
+* As a user I want to be able to register and login whenever I visit to use all website features
+    * There is a sign up form available for new users and a sign in form with password authentication available for all existing users
+
+* As a user I want to be able to edit my details after registering
+    * On the profile page there is a button to edit the users profile. On this you can update your name, username and password
+
+* As a user I want to edit book details that i've submitted after submission
+    * On the profile page you can see all books that you've added to the site. From here you can edit book details.
+
+* As a user i want to delete books that i've posted if I don't want it to appear anymore
+    * On the profile page you can see all books that you've added to the site. From here you can delete these books.
+
+* As a user I want to be able to delete my profile if I no longer want to use the site
+    * On the profile page you can edit your user profile, from there you can delete the profile. Doing so will delete all of your submissions too
+
+* As an admin user I want to have full access to edit all posts by all users
+    * Admin users have access to edit all details and are trusted in doing so. They have access to ensure that all books uploaded conform to site standards, e.g correct book covers are used. They can also edit other information if a user requests this from them.
+
+* As an admin I want to be able to add new genres and delete them in the database from the website
+    * From the admin page there is a button to edit genres. From there an admin can add a new genre and delete existing genres
+
+* As an admin user I want to be able to edit users details and delete their profile if needed
+    * An admin is a trusted person and will only edit or delete a users profile where neccessary or if requested. An admin is able to do this from the admin page.
+
+### Bugs
 #### Issues found on devices and browsers
 
 Very few issues found across all devices, browsers and screen sizes. All looked as expected and intended.
@@ -212,6 +260,7 @@ The website can be found on the link at the top of the page and here - [The Book
 3. Copy the URL - (https://github.com/stefbez/the-book-club.git)
 4. Using the terminal in GitPod paste the code `git clone https://github.com/stefbez/the-book-club.git`
 5. The whole repository folder, including all files are now available for use
+6. The user will be expected to create their own env.py file
 
 ## Credits
 
@@ -237,6 +286,7 @@ The website can be found on the link at the top of the page and here - [The Book
 
 * When stuck, I turned to the Code Institute Slack channels for advice and ideas for how to solve issues, Tutor support from Code Institute and [Stack Overflow](https://stackoverflow.com/)
 
+* Reviews and books on the site are user uploaded and sources of these cannot be referenced.
 
 ### Media
 
@@ -244,7 +294,7 @@ The website can be found on the link at the top of the page and here - [The Book
 
 ### Acknowledgements
 
-* I took inspiration for this from the Code Institute task manager mini project. Expanding on that project, implementing my own ideas and code and learning a lot in the process
+* I took inspiration for this from the Code Institute task manager [mini project](https://github.com/Code-Institute-Solutions/TaskManagerAuth). Expanding on that project, implementing my own ideas and code and learning a lot in the process
 
 * I received support from the tutors at Code Institute with issues and bugs that were occurring, including issues with updating forms without updating passwords each time
 
