@@ -2,14 +2,13 @@
 {% block content %}
 
 <h2 class="center-align">Edit Book</h2>
-
-
 <div class="row">
     <form class="col s12 m8 offset-m2 l6 offset-l3" method="POST" action="{{ url_for('edit_book', book_id=book._id) }}">
         <!-- Title -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="book_title" name="book_title" minlength="1" maxlength="80" pattern="^[A-Za-z0-9 -]+$" value="{{ book.book_title|title() }}" type="text" class="validate" required>
+                <input id="book_title" name="book_title" minlength="1" maxlength="80" pattern="^[A-Za-z0-9 -]+$"
+                    value="{{ book.book_title|title() }}" type="text" class="validate" required>
                 <label for="book_title">Title</label>
                 <span class="helper-text" data-error="Please enter a valid book title"></span>
             </div>
@@ -17,38 +16,41 @@
         <!-- Author -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="book_author" name="book_author" minlength="2" maxlength="60" pattern="^[A-Za-z -]+$" value="{{ book.book_author|title() }}" type="text" class="validate" required>
+                <input id="book_author" name="book_author" minlength="2" maxlength="60" pattern="^[A-Za-z -]+$"
+                    value="{{ book.book_author|title() }}" type="text" class="validate" required>
                 <label for="book_author">Author</label>
                 <span class="helper-text" data-error="Please enter a valid author name"></span>
             </div>
         </div>
         <!-- Genre dropdown -->
         <div class="row">
-        <div class="input-field col s12">
-            <select id="genre_name" name="genre_name" class="validate" required>
-                <option value="" disabled>Choose Genre</option>
-                {% for genres in genre %}
+            <div class="input-field col s12">
+                <select id="genre_name" name="genre_name" class="validate" required>
+                    <option value="" disabled>Choose Genre</option>
+                    {% for genres in genre %}
                     {% if genres.genre_name == book.genre_name %}
-                        <option value="{{ genres.genre_name }}" selected>{{ genres.genre_name|title() }}</option>
+                    <option value="{{ genres.genre_name }}" selected>{{ genres.genre_name|title() }}</option>
                     {% else %}
-                        <option value="{{ genres.genre_name }}">{{ genres.genre_name|title() }}</option>
+                    <option value="{{ genres.genre_name }}">{{ genres.genre_name|title() }}</option>
                     {% endif %}
-                {% endfor %}
-            </select>
-            <label for="genre_name">Genre</label>
+                    {% endfor %}
+                </select>
+                <label for="genre_name">Genre</label>
+            </div>
         </div>
-    </div>
         <!-- Cover image -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="book_cover" name="book_cover" value="{{ book.book_cover }}" type="url" class="validate" required>
+                <input id="book_cover" name="book_cover" value="{{ book.book_cover }}" type="url" class="validate"
+                    required>
                 <label for="book_cover">Cover Image</label>
             </div>
         </div>
         <!-- Review text -->
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="book_review" name="book_review" minlength="10" maxlength="500" type="text" class="materialize-textarea validate" required>
+                <textarea id="book_review" name="book_review" minlength="10" maxlength="500" type="text"
+                    class="materialize-textarea validate" required>
                 {{- book.book_review -}}
                 </textarea>
                 <label for="book_review">Review</label>
@@ -58,27 +60,30 @@
         <!-- Submit & cancel button -->
         <div class="row">
             <div class="col s12 center-align cancel-submit-delete-btns">
-                <a href="{{ url_for('profile', username=session['user']) }}" class="btn dark-btn waves-effect waves-light grid-btn">
-                Cancel
-                <i class="right"></i>
+                <a href="{{ url_for('profile', username=session['user']) }}"
+                    class="btn dark-btn waves-effect waves-light grid-btn">
+                    Cancel
+                    <i class="right"></i>
                 </a>
                 <button class="btn light-btn waves-effect waves-light grid-btn" type="submit">Edit Book
-                <i class="right"></i>
+                    <i class="right"></i>
                 </button>
-                <a class="waves-effect waves-light btn modal-trigger dark-btn grid-btn" href="#{{ book._id }}">Delete</a>
+                <a class="waves-effect waves-light btn modal-trigger dark-btn grid-btn"
+                    href="#{{ book._id }}">Delete</a>
             </div>
         </div>
     </form>
 </div>
-
-  <div id="{{ book._id }}" class="modal delete-modal">
+<!-- Delete book modal -->
+<div id="{{ book._id }}" class="modal delete-modal">
     <div class="modal-content">
-      <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
+        <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
     </div>
     <div class="modal-footer delete-btn">
         <a class="btn waves-effect waves-light light-btn" href="{{ url_for('edit_book', book_id=book._id) }}">Cancel</a>
-        <a class="waves-effect waves-light btn dark-btn" href="{{ url_for('delete_book', book_id=book._id) }}">Delete</a>
+        <a class="waves-effect waves-light btn dark-btn"
+            href="{{ url_for('delete_book', book_id=book._id) }}">Delete</a>
     </div>
-  </div>
+</div>
 
 {% endblock %}

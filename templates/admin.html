@@ -1,40 +1,29 @@
 {% extends "base.html" %}
 {% block content %}
 
-
 <div id="top" class="section scrollspy">
-<h2 class="center-align">Admin</h2>
-<hr class="hr-title">
+    <h2 class="center-align">Admin</h2>
+    <hr class="hr-title">
 </div>
 <div class="row">
     <div class="center-align">
+        <!-- Edit Genre -->
         <div id="editGenre" class="section scrollspy">
-                            <a class="waves-effect waves-light btn btn-large light-btn prefix"
-                href="{{ url_for('edit_genre') }}">
+            <a class="waves-effect waves-light btn btn-large light-btn prefix" href="{{ url_for('edit_genre') }}">
                 Edit Genre <i class="fal fa-arrow-circle-right"></i></a>
         </div>
     </div>
-
-
-
-
     <div class="row">
         <div class="col s12 m10">
-
+            <!-- All Books -->
             <div class="row">
                 <div id="allBooks" class="section scrollspy">
                     <h3 class="admin-subheader">All Books</h3>
-
                     {% for book in books %}
-
-
-
                     <div class="col s12 m6 xl4">
-
                         <div class="card large center-align">
+                            <!-- Book Card -->
                             <div class="card-content book-card-content admin-book-card">
-
-                                <!-- <div class="card-image"> -->
                                 <img src="{{ book.book_cover }}" class="book-card-img">
                                 <span class="card-title truncate">{{ book.book_title|title() }}</span>
                                 <p>{{ book.book_author|title() }}</p>
@@ -47,9 +36,7 @@
                                 </div>
                             </div>
                         </div>
-
-
-
+                        <!-- Delete book modal -->
                         <div id="{{ book._id }}" class="modal delete-modal">
                             <div class="modal-content">
                                 <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
@@ -62,19 +49,14 @@
                             </div>
                         </div>
                     </div>
-
-
                     {% endfor %}
                 </div>
             </div>
             <div class="row">
                 <div id="allUsers" class="section scrollspy">
+                    <!-- All users -->
                     <h3 class="admin-subheader">Users</h3>
-
                     {% for user in users %}
-
-
-
                     <div class="col s12 m6 xl4">
 
                         <div class="card card-style">
@@ -84,10 +66,12 @@
                                     {{ user.last_name|title() }}</span>
                                 <a class="waves-effect waves-light btn modal-trigger light-btn"
                                     href="{{ url_for('admin_edit_profile', user_id=user._id) }}">Edit</a>
-                                <a class="waves-effect waves-light btn modal-trigger dark-btn" href="#{{ user._id }}">Delete</a>
+                                <a class="waves-effect waves-light btn modal-trigger dark-btn"
+                                    href="#{{ user._id }}">Delete</a>
                             </div>
                         </div>
                     </div>
+                    <!-- Delete Users modal -->
                     <div id="{{ user._id }}" class="modal delete-modal">
                         <div class="modal-content">
                             <h4>Are you sure you want to permanently delete '{{ user.username|title() }}'?</h4>
@@ -99,19 +83,14 @@
                                 href="{{ url_for('admin_delete_user', user_id=user._id) }}">Delete</a>
                         </div>
                     </div>
-
-
                     {% endfor %}
                 </div>
             </div>
         </div>
-
         <!-- Scrollspy & to top button -->
-
         <div class="col hide-on-med-and-up">
             <a href="#top"><i class="fad fa-arrow-alt-square-up arrow-up"></i></a>
         </div>
-
         <div class="col hide-on-small-only m2">
             <ul class="section table-of-contents pinned admin-scrollspy">
                 <li class="scroll-header">Navigation</li>

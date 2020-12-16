@@ -1,88 +1,100 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h2 class="center-align">Edit Profile</h2>
-    <p class="center-align">Only update the information that you want to change for {{ user.first_name|title() }}</p>
-    <p class="center-align">If you update {{ user.first_name|title() }}'s username or password, please remember to inform them of the new information</p>
-    
-    <div class="row">
-        <form class="col s12 m8 offset-m2 l6 offset-l3" method="POST" action="{{ url_for('admin_edit_profile', user_id=user._id) }}">
-       
+<h2 class="center-align">Edit Profile</h2>
+<p class="center-align">Only update the information that you want to change for {{ user.first_name|title() }}</p>
+<p class="center-align">If you update {{ user.first_name|title() }}'s username or password, please remember to inform
+    them of the new information</p>
+
+<div class="row">
+    <form class="col s12 m8 offset-m2 l6 offset-l3" method="POST"
+        action="{{ url_for('admin_edit_profile', user_id=user._id) }}">
         <!-- First Name -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="prefix far fa-book-user"></i>
-                    <input id="first_name" name="first_name" type="text" minlength="2" maxlength="25" placeholder="{{ user.first_name|title() }}" pattern="^[A-Za-z -]+$" class="validate">
-                    <label for="first_name">First Name</label>
-                    <span class="helper-text" data-error="Please enter a valid first name"></span>
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="prefix far fa-book-user"></i>
+                <input id="first_name" name="first_name" type="text" minlength="2" maxlength="25"
+                    placeholder="{{ user.first_name|title() }}" pattern="^[A-Za-z -]+$" class="validate">
+                <label for="first_name">First Name</label>
+                <span class="helper-text" data-error="Please enter a valid first name"></span>
+            </div>
+        </div>
+        <!-- Last Name -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="prefix far fa-book-user"></i>
+                <input id="last_name" name="last_name" type="text" minlength="2" maxlength="25"
+                    placeholder="{{ user.last_name|title() }}" pattern="^[A-Za-z -]+$" class="validate">
+                <label for="last_name">Last Name</label>
+                <span class="helper-text" data-error="Please enter a valid last name"></span>
+            </div>
+        </div>
+        <!-- Username -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="prefix fad fa-user-tie"></i>
+                <input id="username" name="username" type="text" minlength="5" maxlength="20"
+                    placeholder="{{ user.username }}" pattern="^[A-Za-z0-9]+$" class="validate">
+                <label for="username">Username</label>
+                <span class="helper-text" data-error="Please enter a valid username"></span>
+            </div>
+        </div>
+        <!-- Password -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="prefix far fa-asterisk"></i>
+                <input id="password" name="password" type="password"
+                    pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^...]).{8,}$" class="validate">
+                <label for="password">Password</label>
+                <span class="helper-text"
+                    data-error="Password must contain at least one capital letter, number and special character">
+                    Password must contain at least one capital letter, number and special character
+                </span>
+            </div>
+        </div>
+        <!-- Admin Status -->
+        <div class="row">
+            <div class="input-field col s12">
+                <div class="switch">
+                    <label for="is_admin">
+                        {% if user.is_admin == "on" %}
+                        <input type="checkbox" id="is_admin" name="is_admin" checked>
+                        {% else %}
+                        <input type="checkbox" id="is_admin" name="is_admin">
+                        {% endif %}
+                        <span class="lever"></span>
+                        Make {{ user.username }} admin?
+                    </label>
                 </div>
             </div>
-            <!-- Last Name -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="prefix far fa-book-user"></i>
-                    <input id="last_name" name="last_name" type="text" minlength="2" maxlength="25" placeholder="{{ user.last_name|title() }}" pattern="^[A-Za-z -]+$" class="validate">
-                    <label for="last_name">Last Name</label>
-                    <span class="helper-text" data-error="Please enter a valid last name"></span>
-                </div>
-            </div>
-            <!-- Username -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="prefix fad fa-user-tie"></i>
-                    <input id="username" name="username" type="text" minlength="5" maxlength="20" placeholder="{{ user.username }}" pattern="^[A-Za-z0-9]+$" class="validate">
-                    <label for="username">Username</label>
-                    <span class="helper-text" data-error="Please enter a valid username"></span>
-                </div>
-            </div>
-            <!-- Password -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="prefix far fa-asterisk"></i>
-                    <input id="password" name="password" type="password" pattern="^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^...]).{8,}$" class="validate">
-                    <label for="password">Password</label>
-                    <span class="helper-text" data-error="Password must contain at least one capital letter, number and special character">Password must contain at least one capital letter, number and special character</span>
-                </div>
-            </div>
-            <!-- Admin Status -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <div class="switch">
-                        <label for="is_admin">
-                            {% if user.is_admin == "on" %}
-                            <input type="checkbox" id="is_admin" name="is_admin" checked>
-                            {% else %}
-                            <input type="checkbox" id="is_admin" name="is_admin">
-                            {% endif %}
-                            <span class="lever"></span>
-                            Make {{ user.username }} admin?
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <!-- Edit Cancel Delete Buttons -->
-            <div class="row">
-                <div class="col s12 center-align cancel-submit-delete-btns">
-                    <a href="{{ url_for('admin', username=session['user']) }}" class="btn dark-btn grid-btn waves-effect waves-light">
+        </div>
+        <!-- Edit Cancel Delete Buttons -->
+        <div class="row">
+            <div class="col s12 center-align cancel-submit-delete-btns">
+                <a href="{{ url_for('admin', username=session['user']) }}"
+                    class="btn dark-btn grid-btn waves-effect waves-light">
                     Cancel
-                    </a>
-                    <button class="btn waves-effect waves-light light-btn grid-btn" type="submit">Edit Profile</button>
-                    <a class="waves-effect waves-light btn modal-trigger dark-btn grid-btn" href="#{{ user._id }}">Delete</a>
-                </div>
+                </a>
+                <button class="btn waves-effect waves-light light-btn grid-btn" type="submit">Edit Profile</button>
+                <a class="waves-effect waves-light btn modal-trigger dark-btn grid-btn"
+                    href="#{{ user._id }}">Delete</a>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
 
 <!-- Delete user modal -->
 
-  <div id="{{ user._id }}" class="modal delete-modal">
+<div id="{{ user._id }}" class="modal delete-modal">
     <div class="modal-content">
-      <h4>Are you sure you want to permanently delete '{{ user.username|title() }}'?</h4>
+        <h4>Are you sure you want to permanently delete '{{ user.username|title() }}'?</h4>
     </div>
     <div class="modal-footer delete-btn">
-        <a class="btn waves-effect waves-light light-btn" href="{{ url_for('admin_edit_profile', user_id=user._id) }}">Cancel</a>
-        <a class="waves-effect waves-light btn dark-btn" href="{{ url_for('admin_delete_user', user_id=user._id) }}">Delete</a>
+        <a class="btn waves-effect waves-light light-btn"
+            href="{{ url_for('admin_edit_profile', user_id=user._id) }}">Cancel</a>
+        <a class="waves-effect waves-light btn dark-btn"
+            href="{{ url_for('admin_delete_user', user_id=user._id) }}">Delete</a>
     </div>
-  </div>
+</div>
 
 {% endblock %}
