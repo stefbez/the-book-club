@@ -283,10 +283,12 @@ def admin_edit_profile(user_id):
             mongo.db.users.update_one(
                 {"_id": ObjectId(user_id)}, {"$set": {"is_admin": is_admin}})
         flash("User profile successfully updated")
-        users = list(mongo.db.users.find())
-        books = list(mongo.db.books.find())
+        username = mongo.db.users.find_one(
+            {"username": session["user"]})["username"]
+        users = list(mongo.db.users.find().sort("username", 1))
+        books = list(mongo.db.books.find().sort("book_title", 1))
         return render_template(
-            "admin.html", users=users, books=books)
+            "admin.html", users=users, books=books, username=username)
 
     user = mongo.db.users.find_one({"_id": ObjectId(user_id)})
     this_user = mongo.db.users.find_one(
@@ -301,10 +303,12 @@ def admin_delete_user(user_id):
     mongo.db.users.remove({"_id": ObjectId(user_id)})
     list(mongo.db.books.remove({"review_by": session["user"]}))
     flash("User Successfully Deleted")
-    users = list(mongo.db.users.find())
-    books = list(mongo.db.books.find())
+    username = mongo.db.users.find_one(
+        {"username": session["user"]})["username"]
+    users = list(mongo.db.users.find().sort("username", 1))
+    books = list(mongo.db.books.find().sort("book_title", 1))
     return render_template(
-        "admin.html", users=users, books=books)
+        "admin.html", users=users, books=books, username=username)
 
 
 @app.route("/admin/edit_book/<book_id>", methods=["GET", "POST"])
@@ -322,11 +326,10 @@ def admin_edit_book(book_id):
         flash("Book successfully updated")
         username = mongo.db.users.find_one(
             {"username": session["user"]})["username"]
-
-        users = list(mongo.db.users.find())
-        books = list(mongo.db.books.find({"review_by": session["user"]}))
+        users = list(mongo.db.users.find().sort("username", 1))
+        books = list(mongo.db.books.find().sort("book_title", 1))
         return render_template(
-            "admin.html", username=username, users=users, books=books)
+            "admin.html", users=users, books=books, username=username)
 
     book = mongo.db.books.find_one({"_id": ObjectId(book_id)})
     genre = mongo.db.genre.find().sort("genre_name", 1)
@@ -339,11 +342,10 @@ def admin_delete_book(book_id):
     flash("Book Successfully Deleted")
     username = mongo.db.users.find_one(
         {"username": session["user"]})["username"]
-
-    user = mongo.db.users.find_one({"username": session["user"]})
-    books = list(mongo.db.books.find({"review_by": session["user"]}))
+    users = list(mongo.db.users.find().sort("username", 1))
+    books = list(mongo.db.books.find().sort("book_title", 1))
     return render_template(
-        "admin.html", username=username, user=user, books=books)
+        "admin.html", users=users, books=books, username=username)
 
 
 @app.route("/edit_genre", methods=["GET", "POST"])
