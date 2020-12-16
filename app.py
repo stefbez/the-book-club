@@ -18,6 +18,7 @@ app.secret_key = os.environ.get("SECRET_KEY")
 mongo = PyMongo(app)
 
 
+# Home
 @app.route("/")
 @app.route("/library")
 def library():
@@ -28,6 +29,7 @@ def library():
         "library.html", books=books, genre=genre)
 
 
+# Search
 @app.route("/search", methods=["GET", "POST"])
 def search():
     query = request.form.get("query")
@@ -37,6 +39,7 @@ def search():
         "library.html", books=books, genre=genre)
 
 
+# Home page sort
 @app.route("/library_author_sort")
 def library_author_sort():
     books = list(mongo.db.books.find().sort("book_author", 1))
@@ -55,6 +58,7 @@ def library_genre_sort():
         "library.html", books=books, genre=genre)
 
 
+# Sign up
 @app.route("/sign_up", methods=["GET", "POST"])
 def sign_up():
     if request.method == "POST":
@@ -81,6 +85,7 @@ def sign_up():
     return render_template("sign_up.html")
 
 
+# Log in
 @app.route("/login", methods=["GET", "POST"])
 def login():
     if request.method == "POST":
@@ -110,6 +115,7 @@ def login():
     return render_template("login.html")
 
 
+# User profile
 @app.route("/profile/<username>", methods=["GET", "POST"])
 def profile(username):
     username = mongo.db.users.find_one(
@@ -125,6 +131,7 @@ def profile(username):
     return redirect(url_for("login"))
 
 
+# Log out
 @app.route("/logout")
 def logout():
     flash("You have been logged out")
@@ -132,6 +139,7 @@ def logout():
     return redirect(url_for("login"))
 
 
+# Add book
 @app.route("/add_book", methods=["GET", "POST"])
 def add_book():
     if request.method == "POST":
@@ -151,6 +159,7 @@ def add_book():
     return render_template("add_book.html", genre=genre)
 
 
+# Edit book
 @app.route("/edit_book/<book_id>", methods=["GET", "POST"])
 def edit_book(book_id):
     if request.method == "POST":
@@ -177,6 +186,7 @@ def edit_book(book_id):
     return render_template("edit_book.html", book=book, genre=genre)
 
 
+# Delete book
 @app.route("/delete_book/<book_id>")
 def delete_book(book_id):
     mongo.db.books.remove({"_id": ObjectId(book_id)})
@@ -190,6 +200,7 @@ def delete_book(book_id):
             "profile.html", username=username, user=user, books=books)
 
 
+# Edit user profile
 @app.route("/edit_profile/<user_id>", methods=["GET", "POST"])
 def edit_profile(user_id):
     if request.method == "POST":
@@ -231,6 +242,7 @@ def edit_profile(user_id):
         "edit_profile.html", user=user, userid=userid, username=username)
 
 
+# Delete user profile
 @app.route("/delete_user/<user_id>")
 def delete_user(user_id):
     mongo.db.users.remove({"_id": ObjectId(user_id)})
@@ -243,6 +255,7 @@ def delete_user(user_id):
             "library.html", books=books, genre=genre)
 
 
+# Admin page
 @app.route("/admin/<username>", methods=["GET", "POST"])
 def admin(username):
     username = mongo.db.users.find_one(
@@ -253,6 +266,7 @@ def admin(username):
         "admin.html", username=username, users=users, books=books)
 
 
+# Admin edit all users
 @app.route("/admin_edit_profile/<user_id>", methods=["GET", "POST"])
 def admin_edit_profile(user_id):
     if request.method == "POST":
@@ -298,6 +312,7 @@ def admin_edit_profile(user_id):
         "admin_edit_profile.html", user=user, this_user=this_user)
 
 
+# Admin delete users
 @app.route("/admin_delete_user/<user_id>")
 def admin_delete_user(user_id):
     mongo.db.users.remove({"_id": ObjectId(user_id)})
@@ -311,6 +326,7 @@ def admin_delete_user(user_id):
         "admin.html", users=users, books=books, username=username)
 
 
+# Admin edit books
 @app.route("/admin/edit_book/<book_id>", methods=["GET", "POST"])
 def admin_edit_book(book_id):
     if request.method == "POST":
@@ -336,6 +352,7 @@ def admin_edit_book(book_id):
     return render_template("admin_edit_book.html", book=book, genre=genre)
 
 
+# Admin delete books
 @app.route("/admin_delete_book/<book_id>")
 def admin_delete_book(book_id):
     mongo.db.books.remove({"_id": ObjectId(book_id)})
@@ -348,6 +365,7 @@ def admin_delete_book(book_id):
         "admin.html", users=users, books=books, username=username)
 
 
+# admin add genre
 @app.route("/edit_genre", methods=["GET", "POST"])
 def edit_genre():
     if request.method == "POST":
@@ -366,6 +384,7 @@ def edit_genre():
     return render_template("edit_genre.html", genre=genre)
 
 
+# admin delete genre
 @app.route("/delete_genre/<genre_id>")
 def delete_genre(genre_id):
     mongo.db.genre.remove({"_id": ObjectId(genre_id)})
@@ -378,4 +397,4 @@ def delete_genre(genre_id):
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
