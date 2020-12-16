@@ -69,7 +69,7 @@ The styling has changed slightly from the mockups, featuring a larger search bar
 * Delete book option for users to delete their submissions
 * Add book form to upload a new book and leave a review
 * Sign in, sign up and log out functions with hashed passwords for user security
-* Username check on sign up to check tat the username isn't already in use
+* Username check on sign up to check that the username isn't already in use
 * Password standards set inline with multiple industry standards, requiring minimum of 8 characters - at least one capital letter, number and special character
 * Admin page for admin/super users
 * Edit/delete all users from the admin page
