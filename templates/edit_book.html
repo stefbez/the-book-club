@@ -54,15 +54,15 @@
         </div>
         <!-- Submit & cancel button -->
         <div class="row">
-            <div class="col s12 center-align">
-                <a href="{{ url_for('profile', username=session['user']) }}" class="btn dark-btn waves-effect waves-light">
+            <div class="col s12 center-align cancel-submit-delete-btns">
+                <a href="{{ url_for('profile', username=session['user']) }}" class="btn dark-btn waves-effect waves-light grid-btn">
                 Cancel
                 <i class="right"></i>
                 </a>
-                <button class="btn light-btn waves-effect waves-light" type="submit">Edit Book
+                <button class="btn light-btn waves-effect waves-light grid-btn" type="submit">Edit Book
                 <i class="right"></i>
                 </button>
-                <a class="waves-effect waves-light btn modal-trigger dark-btn" href="#{{ book._id }}">Delete</a>
+                <a class="waves-effect waves-light btn modal-trigger dark-btn grid-btn" href="#{{ book._id }}">Delete</a>
             </div>
         </div>
     </form>

@@ -65,15 +65,13 @@
         </div>
         <!-- Submit & cancel button -->
         <div class="row">
-            <div class="col s12 center-align">
-                <a href="{{ url_for('admin', username=session['user']) }}" class="btn red waves-effect waves-light">
+            <div class="col s12 center-align cancel-submit-delete-btns">
+                <a href="{{ url_for('admin', username=session['user']) }}" class="btn dark-btn waves-effect waves-light grid-btn">
                 Cancel
-                <i class="right"></i>
                 </a>
-                <button class="btn waves-effect waves-light" type="submit">Edit Book
-                <i class="right"></i>
+                <button class="btn waves-effect waves-light light-btn grid-btn" type="submit">Edit Book
                 </button>
-                <a class="waves-effect waves-light btn modal-trigger red" href="#{{ book._id }}">Delete</a>
+                <a class="waves-effect waves-light btn modal-trigger dark-btn grid-btn" href="#{{ book._id }}">Delete</a>
             </div>
         </div>
     </form>
@@ -84,8 +82,8 @@
       <h4>Are you sure you want to permanently delete '{{ book.book_title|title() }}'?</h4>
     </div>
     <div class="modal-footer delete-btn">
-        <a class="btn waves-effect waves-light" href="{{ url_for('admin_edit_book', book_id=book._id) }}">Cancel</a>
-        <a class="waves-effect waves-light btn red" href="{{ url_for('admin_delete_book', book_id=book._id) }}">Delete</a>
+        <a class="btn waves-effect waves-light light-btn" href="{{ url_for('admin_edit_book', book_id=book._id) }}">Cancel</a>
+        <a class="waves-effect waves-light btn dark-btn" href="{{ url_for('admin_delete_book', book_id=book._id) }}">Delete</a>
     </div>
   </div>
 

@@ -126,6 +126,8 @@ a.modal-trigger.dark-btn,
 @media (max-width: 576px) {
     .cancel-submit-delete-btns{
         display: grid;
+        display: -moz-grid;
+        display: -ms-grid;
     }
     .cancel-submit-delete-btns .grid-btn{
         margin: .5rem;
