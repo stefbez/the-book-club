@@ -184,6 +184,27 @@ The website can be found on the link at the top of the page and here - [The Book
 
 ### Deployment using Heroku
 
+1. Create a Github repository and open this in Gitpod or your choice of IDE
+1. Go to the Heroku Dashboard and create a new app
+2. In the settings tab of the app click Reveal Config Vars and enter the values for these keys: 
+    * IP
+    * MONGO_DBNAME
+    * MONGO_URI
+    * PORT
+    * SECRET_KEY
+3. In Gitpod create a .gitignore file
+4. Create an env.py file containing all of the variables above and add it to the .gitignore
+5. Create a requirements.txt by using the command "pip freeze --local > requirements.txt", in order for Heroku to know which dependancies are required to run the app
+6. Create a Procfile by using the command "echo web: python app.py > Procfile"
+7. Go to the Deploy tab on Heroku and navigate to the 'Deployment method' section
+8. Select 'Connect to GitHub'
+9. Make sure your GitHub profile is displayed and enter the repo name from step 1
+10. Select search and once it loads click connect to connect to the app
+11. Enable automatic deployment clicking the button below
+12. Select the branch you want to deploy from in the 'Manual Deploy' section, mine is just the master branch, and select 'Deploy Branch'
+13. Wait for a message saying 'Your app was successfully deployed". You can now select the 'View' button to see your deployed site
+14. Once the steps above are completed whenever you push to GitHub, Heroku will automatically update
+
 ### Clone The Book Club
 
 1. Go to the [repository](https://github.com/stefbez/the-book-club)
@@ -197,6 +218,10 @@ The website can be found on the link at the top of the page and here - [The Book
 ### Content
 
 * The footer needed to be pushed down to the bottom on some screen sizes, such as iPad pro. I found a way to do this through research online and used [freecodecamp.org/](https://www.freecodecamp.org/news/how-to-keep-your-footer-where-it-belongs-59c6aa05c59c/) to fix this issue. The code used from this website is not my own work, but a solution to a problem I was having
+
+* The code needed to truncate a long book title, on the second line, on the library page came from [here](https://dropshado.ws/post/1015351370/webkit-line-clamp)
+
+* I used [randomkeygen.com](https://randomkeygen.com/) for a randomly generated secret key
 
 * [Coolors](https://coolors.co/) was used to find a colour scheme for the site
 
