@@ -113,15 +113,15 @@ Tested the HTML pages, CSS, Python & Javascript on the [HTML validator website](
 
 #### CSS errors:
 
-* No errors found.
+* No errors found
 
 #### Python errors:
 
-* No errors
+* No errors found
 
 #### JS errors:
 
-* No errors
+* No errors found
 
 ### Testing across multiple devices and browsers on completion
 
