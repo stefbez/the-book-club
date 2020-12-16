@@ -9,15 +9,17 @@
         <!-- Title -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="book_title" name="book_title" maxlength="30" value="{{ book.book_title|title() }}" type="text" class="validate" required>
+                <input id="book_title" name="book_title" minlength="1" maxlength="80" pattern="^[A-Za-z0-9 -]+$" value="{{ book.book_title|title() }}" type="text" class="validate" required>
                 <label for="book_title">Title</label>
+                <span class="helper-text" data-error="Please enter a valid book title"></span>
             </div>
         </div>
         <!-- Author -->
         <div class="row">
             <div class="input-field col s12">
-                <input id="book_author" name="book_author" maxlength="30" value="{{ book.book_author|title() }}" type="text" class="validate" required>
+                <input id="book_author" name="book_author" minlength="2" maxlength="60" pattern="^[A-Za-z -]+$" value="{{ book.book_author|title() }}" type="text" class="validate" required>
                 <label for="book_author">Author</label>
+                <span class="helper-text" data-error="Please enter a valid author name"></span>
             </div>
         </div>
         <!-- Genre dropdown -->
@@ -46,10 +48,11 @@
         <!-- Review text -->
         <div class="row">
             <div class="input-field col s12">
-                <textarea id="book_review" name="book_review" minlength="10" maxlength="500" type="text" class="materialize-textarea" required>
+                <textarea id="book_review" name="book_review" minlength="10" maxlength="500" type="text" class="materialize-textarea validate" required>
                 {{- book.book_review -}}
                 </textarea>
                 <label for="book_review">Review</label>
+                <span class="helper-text" data-error="Please leave a review longer than 10 characters"></span>
             </div>
         </div>
         <!-- Submit & cancel button -->
