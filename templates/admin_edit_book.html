@@ -6,11 +6,10 @@
 
 
 <div class="row">
-    <form class="col s12" method="POST" action="{{ url_for('admin_edit_book', book_id=book._id) }}">
+    <form class="col s12 m8 offset-m2 l6 offset-l3" method="POST" action="{{ url_for('admin_edit_book', book_id=book._id) }}">
         <!-- Title -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="prefix"></i>
                 <input id="book_title" name="book_title" maxlength="30" value="{{ book.book_title }}" type="text" class="validate" required>
                 <label for="book_title">Title</label>
             </div>
@@ -18,7 +17,6 @@
         <!-- Author -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="prefix"></i>
                 <input id="book_author" name="book_author" maxlength="30" value="{{ book.book_author }}" type="text" class="validate" required>
                 <label for="book_author">Author</label>
             </div>
@@ -40,7 +38,6 @@
         <!-- Cover image -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="prefix"></i>
                 <input id="book_cover" name="book_cover" value="{{ book.book_cover }}" type="url" class="validate" required>
                 <label for="book_cover">Cover Image</label>
             </div>
@@ -48,7 +45,6 @@
         <!-- Review text -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="prefix"></i>
                 <textarea id="book_review" name="book_review" minlength="10" maxlength="500" type="text" class="materialize-textarea" required>
                 {{- book.book_review -}}
                 </textarea>
@@ -58,7 +54,6 @@
         <!-- Review by -->
         <div class="row">
             <div class="input-field col s12">
-                <i class="prefix"></i>
                 <input id="review_by" name="review_by" minlength="2" maxlength="30" value="{{ book.review_by }}" type="text" class="validate" required>
                 <label for="review_by">Review By</label>
             </div>
