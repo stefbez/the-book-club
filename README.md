@@ -10,13 +10,6 @@ As part of the Code Institute Full Stack Development Diploma I have created this
 
 This website shows off Python, Flask, Jinja, MongoDB & Materialize knowledge recently learnt along with JQuery, HTML, Bootstrap and CSS previously learnt. These skills are used to make a Book review/sharing site that allows users to view recommended books from other users, and allows them to buy the books. Users can also upload their own books and reviews in the hopes that they will inspire another user to read and enjoy that book.
 
-### Login for testing
-
-The default admin login for the site is:
-
-username: admin
-password: Admin123!
-
 ## UX
 
 The UX process was vital in creating an appealing site that avid book readers and reviewers would want to visit and use. With a consistent colour scheme throughout, and easy to use features and buttons, this website allows users of any age and technical ability to share books and read reviews.
