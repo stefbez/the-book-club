@@ -4,7 +4,7 @@
 
 ## Milestone Project 3
 
-The project can be found here: [The Book Club](https://sb-the-book-club.herokuapp.com/).
+This project is not currently hosted, a new link will be up soon
 
 As part of the Code Institute Full Stack Development Diploma I have created this website using the technologies learnt throughout the course so far.
 
